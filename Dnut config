@@ -8,6 +8,59 @@ local COB = function(tab, argstable)
     return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
 end
 
+local oldchanneltabs = {}
+local tags = {
+[3826682576] = {"DNut Developer",Color3.new(0.333333, 0.333333, 1)},-- Lego/ Vxpe man
+[3819425061] = {"DNut Developer",Color3.new(0.333333, 0.333333, 1)}, -- Driped out
+[3882338495] = {"Vape Private",Color3.new(0.666667, 0, 1)}, -- Owner?
+}
+
+for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
+	if v.Function and #debug.getupvalues(v.Function) > 0 and type(debug.getupvalues(v.Function)[1]) == "table" and getmetatable(debug.getupvalues(v.Function)[1]) and getmetatable(debug.getupvalues(v.Function)[1]).GetChannel then
+		oldchanneltab = getmetatable(debug.getupvalues(v.Function)[1])
+		oldchannelfunc = getmetatable(debug.getupvalues(v.Function)[1]).GetChannel
+		getmetatable(debug.getupvalues(v.Function)[1]).GetChannel = function(Self, Name)
+			local tab = oldchannelfunc(Self,Name)
+			if tab then
+				local addmessage = tab.AddMessageToChannel
+				if oldchanneltabs[tab] == nil then
+					oldchanneltabs[tab] = tab.AddMessageToChannel
+				end
+				tab.AddMessageToChannel = function(Self2, MessageData)
+					if MessageData.FromSpeaker and game.Players[MessageData.FromSpeaker] then
+						for i,v in pairs(tags) do
+							if i == game.Players[MessageData.FromSpeaker].UserId then
+								MessageData.ExtraData = {
+									NameColor = game.Players[MessageData.FromSpeaker].Team == nil and Color3.new(0, 1, 1) or game.Players[MessageData.FromSpeaker].TeamColor.Color,
+									Tags = {
+										table.unpack(MessageData.ExtraData.Tags),
+										{
+											TagColor = v[2],
+											TagText = v[1]
+										}
+									}
+								}
+							end
+						end
+					end
+					return addmessage(Self2, MessageData)
+				end
+			end
+			return tab
+		end
+	end
+end
+
+game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Wait()
+task.wait(0.2)
+if getconnections then
+	for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
+		if v.Function and #debug.getupvalues(v.Function) > 0 and type(debug.getupvalues(v.Function)[1]) == "table" and getmetatable(debug.getupvalues(v.Function)[1]) and getmetatable(debug.getupvalues(v.Function)[1]).GetChannel then
+			debug.getupvalues(v.Function)[1]:SwitchCurrentChannel("All")
+		end
+	end
+end
+
 local AnticheatDisabler = COB("World", {
     Name = "Old Antivoid",
     Function = function(callback) 
