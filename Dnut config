@@ -65,12 +65,12 @@ if getconnections then
 	end
 end
 shared.DNutLoaded = true
-
+local antivoidpart
 local AnticheatDisabler = COB("World", {
     Name = "Old Antivoid",
     Function = function(callback) 
         if callback then
-            local antivoidpart = Instance.new("Part", Workspace)
+            antivoidpart = Instance.new("Part", Workspace)
             antivoidpart.Name = "AntiVoid"
             antivoidpart.Size = Vector3.new(2100, 0.5, 2000)
             antivoidpart.Position = Vector3.new(160.5, 25, 247.5)
@@ -85,6 +85,10 @@ local AnticheatDisabler = COB("World", {
                     game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
                 end
             end)
+	    else
+	    pcall(function()
+	    antivoidpart:Destroy()
+	    end)
         end
     end,
     Default = false,
