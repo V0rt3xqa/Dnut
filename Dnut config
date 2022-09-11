@@ -9,7 +9,7 @@ local COB = function(tab, argstable)
 end
 
 local oldchanneltabs = {}
-local tags = { -- Tags
+local tags = {
 [3826682576] = {"DNut Developer",Color3.new(0.333333, 0.333333, 1)},-- Lego/ Vxpe man
 [3819425061] = {"DNut Developer",Color3.new(0.333333, 0.333333, 1)}, -- Driped out
 [3882338495] = {"Vape Private",Color3.new(0.666667, 0, 1)}, -- Owner?
