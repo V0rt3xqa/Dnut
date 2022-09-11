@@ -171,7 +171,7 @@ local AnticheatDisabler = COB("Blatant", {
     Default = false,
     HoverText = "Hold Left shift or speed wont work"
 })
-
+local _Autowin
 local AnticheatDisabler = COB("Blatant", {
         Name = "AutoWinBeta",
         Function = function(callback) 
@@ -184,11 +184,13 @@ local AnticheatDisabler = COB("Blatant", {
             until v.Character.Humanoid.Health == 0 or not v.Character:FindFirstChild("Humanoid")
         end
     end
+     _Autowin["ToggleButton"](false)
             end
         end,
     Default = false,
     HoverText = "still in beta"
 })
+_Autowin = AnticheatDisabler
 
 local AnticheatDisabler = COB("World", {
     Name = "Shaders",
