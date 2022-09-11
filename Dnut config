@@ -8,10 +8,6 @@ local COB = function(tab, argstable)
     return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
 end
 
-local AnticheatDisabler = COB("Blatant", {
-    Name = "tag",
-    Function = function(callback) 
-        if callback then
 local oldchanneltabs = {}
 local tags = {
 [3826682576] = {"DNut Developer",Color3.new(0.333333, 0.333333, 1)},-- Lego/ Vxpe man
