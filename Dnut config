@@ -1,6 +1,6 @@
 -- Dnut config
 repeat task.wait() until game:IsLoaded()
-repeat task.wait() until shared.GuiLibrary
+repeat task.wait() until shared.GuiLibrary and shared.VapeExecuted
 local GuiLibrary = shared.GuiLibrary
 local ScriptSettings = {}
 local UIS = game:GetService("UserInputService")
