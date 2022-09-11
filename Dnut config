@@ -1,0 +1,362 @@
+-- Dnut config
+repeat task.wait() until game:IsLoaded()
+repeat task.wait() until shared.GuiLibrary
+local GuiLibrary = shared.GuiLibrary
+local ScriptSettings = {}
+local UIS = game:GetService("UserInputService")
+local COB = function(tab, argstable) 
+    return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
+end
+
+local AnticheatDisabler = COB("World", {
+    Name = "Old Antivoid",
+    Function = function(callback) 
+        if callback then
+            local antivoidpart = Instance.new("Part", Workspace)
+            antivoidpart.Name = "AntiVoid"
+            antivoidpart.Size = Vector3.new(2100, 0.5, 2000)
+            antivoidpart.Position = Vector3.new(160.5, 25, 247.5)
+            antivoidpart.Transparency = 0.4
+            antivoidpart.Anchored = true
+            antivoidpart.Touched:connect(function(dumbcocks)
+                if dumbcocks.Parent:WaitForChild("Humanoid") and dumbcocks.Parent.Name == lplr.Name then
+                    game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+                    wait(0.2)
+                    game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+                    wait(0.2)
+                    game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+                end
+            end)
+        end
+    end,
+    Default = false,
+    HoverText = "Old Stud Antivoid"
+})
+
+local AnticheatDisabler = COB("Blatant", {
+    Name = "Infinite Jump",
+    Function = function(callback) 
+        if callback then
+local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
+        end
+    end,
+    Default = false,
+    HoverText = "OP with gravity and custom speed"
+})
+
+local AnticheatDisabler = COB("World", {
+    Name = "UltraFPSBoost",
+    Function = function(callback) 
+        if callback then
+        local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
+local g = game
+local w = g.Workspace
+local l = g.Lighting
+local t = w.Terrain
+t.WaterWaveSize = 0
+t.WaterWaveSpeed = 0
+t.WaterReflectance = 0
+t.WaterTransparency = 0
+l.GlobalShadows = false
+l.FogEnd = 9e9
+l.Brightness = 0
+settings().Rendering.QualityLevel = "Level01"
+for i, v in pairs(g:GetDescendants()) do
+    if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+        v.Material = "Plastic"
+        v.Reflectance = 0
+    elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+        v.Transparency = 1
+    elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+        v.Lifetime = NumberRange.new(0)
+    elseif v:IsA("Explosion") then
+        v.BlastPressure = 1
+        v.BlastRadius = 1
+    elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+        v.Enabled = false
+    elseif v:IsA("MeshPart") then
+        v.Material = "Plastic"
+        v.Reflectance = 0
+        v.TextureID = 10385902758728957
+    end
+end
+for i, e in pairs(l:GetChildren()) do
+    if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+        e.Enabled = false
+    end
+end
+        end
+    end,
+    Default = false,
+    HoverText = "FPS Booster"
+})
+
+local lplr = game.Players.LocalPlayer
+
+local AnticheatDisabler = COB("Blatant", {
+    Name = "Better speed v2",
+    Function = function(callback) 
+        if callback then
+       loadstring(game:HttpGet(('https://raw.githubusercontent.com/V0rt3xqa/Why-u-need-this/main/Better%20speed'),true))()
+
+        end
+    end,
+    Default = false,
+    HoverText = "Hold Left shift or speed wont work"
+})
+
+local AnticheatDisabler = COB("Blatant", {
+        Name = "AutoWinBeta",
+        Function = function(callback) 
+            if callback then
+  for i, v in pairs(game:GetService("Players"):GetChildren()) do
+        if v.Character and v.Character:FindFirstChild("HumanoidRootPart") and v.Team ~= game.Players.LocalPlayer.Team then
+            print(v.Name)
+            repeat wait(0.2)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+            until v.Character.Humanoid.Health == 0 or not v.Character:FindFirstChild("Humanoid")
+        end
+    end
+            end
+        end,
+    Default = false,
+    HoverText = "still in beta"
+})
+
+local AnticheatDisabler = COB("World", {
+    Name = "Shaders",
+    Function = function(callback) 
+        if callback then
+            -- // Exec once for shaders, exec again to turn off
+-- // Terrible code lmfaoo
+
+local lighting = game:GetService("Lighting")
+getgenv().shaders = {}
+if not shared.Check then
+getgenv().oldLighting = {}
+getgenv().oldLightingProp = {  -- keep old game lighting or whatever
+    Ambient = lighting.Ambient,
+    Brightness = lighting.Brightness,
+    ColorShift_Bottom = lighting.ColorShift_Bottom,
+    ColorShift_Top = lighting.ColorShift_Top,
+    GlobalShadows = lighting.GlobalShadows,
+    OutdoorAmbient = lighting.OutdoorAmbient,
+    ShadowSoftness = lighting.ShadowSoftness,
+    EnvironmentDiffuseScale = lighting.EnvironmentDiffuseScale,
+    EnvironmentSpecularScale = lighting.EnvironmentSpecularScale,
+    ClockTime = lighting.ClockTime,
+    GeographicLatitude = lighting.GeographicLatitude,
+}
+end
+function revertshaders()
+    for i,v in pairs(getgenv().oldLightingProp) do
+        lighting[i] = v
+    end
+    for i,v in pairs(lighting:GetChildren()) do 
+        if not v:IsA("BlurEffect") and v.ClassName:lower():find("effect") then 
+            v.Parent = nil
+        end 
+    end
+    
+    for i,v in pairs(oldLighting) do 
+        v.Parent = lighting
+    end
+    
+    for i,v in pairs(getgenv().shaders) do 
+        v.Parent = nil
+    end
+    
+    sethiddenproperty(lighting, "Technology", getgenv().oldLighting["Technology"])
+end
+
+
+function doshaders()
+for i,v in pairs(lighting:GetChildren()) do 
+    if not v:IsA("BlurEffect") and v.ClassName:lower():find("effect") then 
+        getgenv().oldLighting[v.Name] = v
+        v.Parent = nil
+    end 
+    getgenv().oldLighting["Technology"] = gethiddenproperty(lighting, "Technology")
+end
+    local Bloom = lighting:FindFirstChild("EngoShaders_Bloom") or Instance.new("BloomEffect", lighting)
+    local ColorCorrection = lighting:FindFirstChild("EngoShaders_ColorCorrection") or Instance.new("ColorCorrectionEffect", lighting)
+    getgenv().shaders["Bloom"] = Bloom 
+    getgenv().shaders["ColorCorrection"] = ColorCorrection
+    lighting.Ambient = Color3.fromRGB(230, 164, 50)
+    lighting.Brightness = 7
+    lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
+    lighting.ColorShift_Top = Color3.fromRGB(217, 140, 32)
+    lighting.GlobalShadows = true
+    lighting.OutdoorAmbient = Color3.fromRGB(102, 105, 50)
+    lighting.ShadowSoftness = 0
+    lighting.EnvironmentDiffuseScale = 0.05
+    lighting.EnvironmentSpecularScale = 0.05
+    sethiddenproperty(lighting, "Technology", Enum.Technology.ShadowMap)
+    lighting.ClockTime = 9
+    lighting.GeographicLatitude = 80
+    Bloom.Name = "EngoShaders_Bloom"
+    Bloom.Intensity = 0.1 
+    Bloom.Size = 46
+    Bloom.Threshold = 0.8
+    ColorCorrection.Name = "EngoShaders_ColorCorrection"
+    ColorCorrection.TintColor = Color3.fromRGB(244, 255, 210)
+    ColorCorrection.Contrast = 0.2
+    ColorCorrection.Brightness = -0.05
+end
+
+if shared.ShadersExecuted then
+shared.ShadersExecuted = false
+revertshaders()
+else
+shared.ShadersExecuted = true
+doshaders()
+end
+
+shared.Check = true -- keep old game lighting or whatever
+        end
+    end,
+    Default = false,
+    HoverText = "Credit to azura for making it"
+})
+
+local AnticheatDisabler = COB("Blatant", {
+    Name = "box esp",
+    Function = function(callback) 
+        if callback then
+---Created By 0x83
+
+local lplr = game.Players.LocalPlayer
+local camera = game:GetService("Workspace").CurrentCamera
+local CurrentCamera = workspace.CurrentCamera
+local worldToViewportPoint = CurrentCamera.worldToViewportPoint
+
+local HeadOff = Vector3.new(0, 0.5, 0)
+local LegOff = Vector3.new(0,3,0)
+
+for i,v in pairs(game.Players:GetChildren()) do
+    local BoxOutline = Drawing.new("Square")
+    BoxOutline.Visible = false
+    BoxOutline.Color = Color3.new(0,0,0)
+    BoxOutline.Thickness = 3
+    BoxOutline.Transparency = 1
+    BoxOutline.Filled = false
+
+    local Box = Drawing.new("Square")
+    Box.Visible = false
+    Box.Color = Color3.new(1,1,1)
+    Box.Thickness = 1
+    Box.Transparency = 1
+    Box.Filled = false
+
+    function boxesp()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+                local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                local RootPart = v.Character.HumanoidRootPart
+                local Head = v.Character.Head
+                local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position)
+                local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff)
+                local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff)
+
+                if onScreen then
+                    BoxOutline.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    BoxOutline.Position = Vector2.new(RootPosition.X - BoxOutline.Size.X / 2, RootPosition.Y - BoxOutline.Size.Y / 2)
+                    BoxOutline.Visible = true
+
+                    Box.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2)
+                    Box.Visible = true
+
+                    if v.TeamColor == lplr.TeamColor then
+                        BoxOutline.Visible = false
+                        Box.Visible = false
+                    else
+                        BoxOutline.Visible = true
+                        Box.Visible = true
+                    end
+
+                else
+                    BoxOutline.Visible = false
+                    Box.Visible = false
+                end
+            else
+                BoxOutline.Visible = false
+                Box.Visible = false
+            end
+        end)
+    end
+    coroutine.wrap(boxesp)()
+end
+
+game.Players.PlayerAdded:Connect(function(v)
+    local BoxOutline = Drawing.new("Square")
+    BoxOutline.Visible = false
+    BoxOutline.Color = Color3.new(0,0,0)
+    BoxOutline.Thickness = 3
+    BoxOutline.Transparency = 1
+    BoxOutline.Filled = false
+
+    local Box = Drawing.new("Square")
+    Box.Visible = false
+    Box.Color = Color3.new(1,1,1)
+    Box.Thickness = 1
+    Box.Transparency = 1
+    Box.Filled = false
+
+    function boxesp()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+                local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                local RootPart = v.Character.HumanoidRootPart
+                local Head = v.Character.Head
+                local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position)
+                local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff)
+                local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff)
+
+                if onScreen then
+                    BoxOutline.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    BoxOutline.Position = Vector2.new(RootPosition.X - BoxOutline.Size.X / 2, RootPosition.Y - BoxOutline.Size.Y / 2)
+                    BoxOutline.Visible = true
+
+                    Box.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2)
+                    Box.Visible = true
+
+                    if v.TeamColor == lplr.TeamColor then
+                        BoxOutline.Visible = false
+                        Box.Visible = false
+                    else
+                        BoxOutline.Visible = true
+                        Box.Visible = true
+                    end
+
+                else
+                    BoxOutline.Visible = false
+                    Box.Visible = false
+                end
+            else
+                BoxOutline.Visible = false
+                Box.Visible = false
+            end
+        end)
+    end
+    coroutine.wrap(boxesp)()
+end)
+
+---Created By 0x83
+        end
+    end,
+    Default = false,
+    HoverText = "caz vape esp sucks"
+})
+
+
+
+
