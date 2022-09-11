@@ -69,11 +69,6 @@ if getconnections then
 	end
 end
 shared.DNutLoaded = true
-        end
-    end,
-    Default = false,
-    Hov
-
 
 local AnticheatDisabler = COB("World", {
     Name = "Old Antivoid",
@@ -423,7 +418,6 @@ end)
     Default = false,
     HoverText = "caz vape esp sucks"
 })
-
 
 
 
