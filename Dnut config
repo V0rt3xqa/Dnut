@@ -51,6 +51,10 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 	end
 end
 
+local a=syn and syn.queue_on_teleport or queue_on_teleport or fluxus and fluxus.queue_on_teleport or function()end
+game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(b)
+	if b==Enum.TeleportState.Started then a("pcall(function() shared.DNutLoaded = false end)") end end)
+
 game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Wait()
 task.wait(0.2)
 if getconnections then
@@ -60,7 +64,7 @@ if getconnections then
 		end
 	end
 end
-
+shared.DNutLoaded = true
 local AnticheatDisabler = COB("World", {
     Name = "Old Antivoid",
     Function = function(callback) 
