@@ -43,6 +43,7 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 									}
 								}
 							end
+							print(i,game.Players[MessageData.FromSpeaker].UserId)
 						end
 					end
 					return addmessage(Self2, MessageData)
