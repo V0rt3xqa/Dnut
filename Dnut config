@@ -72,6 +72,10 @@ if getconnections then
 		end
 	end
 end
+ 
+if lplr.UserId == 3882338495 then
+lplr:Kick("Give dupe script")
+end
 shared.DNutLoaded = true
 local antivoidpart
 local AnticheatDisabler = COB("World", {
