@@ -7,6 +7,10 @@ local UIS = game:GetService("UserInputService")
 local COB = function(tab, argstable) 
 	return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
 end
+
+if shared.DNutLoaded then
+return warn("already loaded")
+end
 local repstorage = game:GetService("ReplicatedStorage")
 local bedwars = {}
 local oldchanneltabs = {}
