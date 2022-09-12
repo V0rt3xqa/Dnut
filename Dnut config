@@ -9,7 +9,7 @@ local COB = function(tab, argstable)
 end
 
 if shared.DNutLoaded then
-return warn("already loaded")
+error("already loaded")
 end
 local repstorage = game:GetService("ReplicatedStorage")
 local bedwars = {}
