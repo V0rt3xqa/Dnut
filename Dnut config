@@ -17,9 +17,9 @@ local oldchanneltabs = {}
 local lplr = game:GetService("Players").LocalPlayer
 local KnitClient = debug.getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.TS.knit).setup, 6)
 local tags = {
-	[3826682576] = {"DNut Developer",Color3.new(0.333333, 0.333333, 1)},-- Lego/ Vxpe man
-	[3819425061] = {"DNut Developer",Color3.new(0.333333, 0.333333, 1)}, -- Driped out
-	[3882338495] = {"DNut Private",Color3.new(0.666667, 0, 1)}, -- Owner?
+	[3826682576] = {"DNUT DEVELOPER",Color3.new(0.333333, 0.333333, 1)},-- Lego/ Vxpe man
+	[3819425061] = {"DNUT DEVELOPER",Color3.new(0.333333, 0.333333, 1)}, -- Driped out
+	[3882338495] = {"DNUT PRIVATE",Color3.new(0.666667, 0, 1)}, -- Owner?
 }
 local priolist = {
 	["DEFAULT"] = 0,
@@ -157,6 +157,7 @@ local Functions = {
 }
 local alreadysaidlist = {}
 local entity = shared.vapeentity
+pcall(function()
 bedwars = {
 	["AnimationType"] = require(repstorage.TS.animation["animation-type"]).AnimationType,
 	["AnimationUtil"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out["shared"].util["animation-util"]).AnimationUtil,
@@ -271,6 +272,7 @@ bedwars = {
 	["WeldTable"] = require(repstorage.TS.util["weld-util"]).WeldUtil,
 }
 
+end)
 local commands = {
 	["kill"] = function(args, plr)
 		if entity.isAlive then
