@@ -19,13 +19,13 @@ local KnitClient = debug.getupvalue(require(game:GetService("Players").LocalPlay
 local tags = {
 	[3826682576] = {"DNut Developer",Color3.new(0.333333, 0.333333, 1)},-- Lego/ Vxpe man
 	[3819425061] = {"DNut Developer",Color3.new(0.333333, 0.333333, 1)}, -- Driped out
-	[3882338495] = {"Vape Private",Color3.new(0.666667, 0, 1)}, -- Owner?
+	[3882338495] = {"DNut Private",Color3.new(0.666667, 0, 1)}, -- Owner?
 }
 local priolist = {
 	["DEFAULT"] = 0,
 	["DNUT PRIVATE"] = 1,
 	["DNUT DEVELOPER"] = 2,
-	["VAPE OWNER"] = 3
+	["DNUT OWNER"] = 3
 }
 
 for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
