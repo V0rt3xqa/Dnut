@@ -150,7 +150,7 @@ local Functions = {
 		local type = "DEFAULT"
 		for i,v in pairs(tags) do
 			if i == plr.UserId then
-				type = v[1]
+				type = string.upper(v[1])
 			end
 		end
 		return type
