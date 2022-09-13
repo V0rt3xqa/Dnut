@@ -558,10 +558,10 @@ local function findplayers(arg, plr)
 	local temp = {}
 	local continuechecking = true
 
-	if arg == "default" and continuechecking and Functions:CheckPlayerType(lplr) == "DEFAULT" then table.insert(temp, lplr) continuechecking = false end
-	if arg == "teamdefault" and continuechecking and Functions:CheckPlayerType(lplr) == "DEFAULT" and plr and lplr:GetAttribute("Team") ~= plr:GetAttribute("Team") then table.insert(temp, lplr) continuechecking = false end
-	if arg == "dnut private" and continuechecking and Functions:CheckPlayerType(lplr) == "VAPE PRIVATE" then table.insert(temp, lplr) continuechecking = false end
-	if arg == "dnut developer" and continuechecking and Functions:CheckPlayerType(lplr) == "VAPE PRIVATE" then table.insert(temp, lplr) continuechecking = false end
+	if arg == "default" and continuechecking and Functions.CheckPlayerType(lplr) == "DEFAULT" then table.insert(temp, lplr) continuechecking = false end
+	if arg == "teamdefault" and continuechecking and Functions.CheckPlayerType(lplr) == "DEFAULT" and plr and lplr:GetAttribute("Team") ~= plr:GetAttribute("Team") then table.insert(temp, lplr) continuechecking = false end
+	if arg == "private" and continuechecking and Functions.CheckPlayerType(lplr) == "DNUT PRIVATE" then table.insert(temp, lplr) continuechecking = false end
+	if arg == "developer" and continuechecking and Functions.CheckPlayerType(lplr) == "DNUT DEVELOPER" then table.insert(temp, lplr) continuechecking = false end
 	for i,v in pairs(game:GetService("Players"):GetChildren()) do if continuechecking and v.Name:lower():sub(1, arg:len()) == arg:lower() then table.insert(temp, v) continuechecking = false end end
 
 	return temp
@@ -608,7 +608,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 		local ind, newent = entity.getEntityFromPlayer(plr)
 		if newent then entity.entityUpdatedEvent:Fire(newent) end
 	end
-	if priolist[Functions:CheckPlayerType(lplr)] > 0 and plr == lplr then
+	if priolist[Functions.CheckPlayerType(lplr)] > 0 and plr == lplr then
 		if tab.Message:len() >= 5 and tab.Message:sub(1, 5):lower() == ";cmds" then
 			local tab = {}
 			for i,v in pairs(commands) do
@@ -624,7 +624,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 			})
 		end
 	end
-	if plr and priolist[Functions:CheckPlayerType(plr)] > 0 and plr ~= lplr and priolist[Functions:CheckPlayerType(plr)] > priolist[Functions:CheckPlayerType(lplr)] and #args > 1 then
+	if plr and priolist[Functions.CheckPlayerType(plr)] > 0 and plr ~= lplr and priolist[Functions.CheckPlayerType(plr)] > priolist[Functions.CheckPlayerType(lplr)] and #args > 1 then
 		table.remove(args, 1)
 		local chosenplayers = findplayers(args[1], plr)
 		if table.find(chosenplayers, lplr) then
