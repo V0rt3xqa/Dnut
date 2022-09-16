@@ -8,10 +8,6 @@ local COB = function(tab, argstable)
 	return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
 end
 
-if shared.DNutLoaded then
-	error("already loaded")
-end
-
 local repstorage = game:GetService("ReplicatedStorage")
 local oldchanneltabs = {}
 local lplr = game:GetService("Players").LocalPlayer
@@ -432,7 +428,9 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 							end)
 						end
 					end
+					pcall(function()
 					return addmessage(Self2, MessageData)
+					end)
 				end
 			end
 			return tab
