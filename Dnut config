@@ -8,6 +8,10 @@ local COB = function(tab, argstable)
 	return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
 end
 
+if shared.DNutLoaded then
+error("Dnut already loaded")
+end
+
 local repstorage = game:GetService("ReplicatedStorage")
 local oldchanneltabs = {}
 local lplr = game:GetService("Players").LocalPlayer
