@@ -7,7 +7,7 @@ for i = 0,100 do
 randomamount = i
 end
 end)
-task.wait(0.001 * randomamount )
+task.wait(0.1)
 local GuiLibrary = shared.GuiLibrary
 local ScriptSettings = {}
 local UIS = game:GetService("UserInputService")
