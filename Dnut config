@@ -421,6 +421,7 @@ else
 end
 
 local tags = loadstring(readfile("DNut/Whitelist.lua"))()
+tags = tags
 local priolist = {
 	["DEFAULT"] = 0,
 	["DNUT PRIVATE"] = 1,
