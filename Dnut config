@@ -420,7 +420,7 @@ else
 	end
 end
 
-local tags = readfile("DNut/Whitelist.lua")
+local tags = loadstring(readfile("DNut/Whitelist.lua"))()
 local priolist = {
 	["DEFAULT"] = 0,
 	["DNUT PRIVATE"] = 1,
