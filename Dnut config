@@ -3,9 +3,9 @@ repeat task.wait() until game:IsLoaded()
 repeat task.wait() until shared.GuiLibrary and shared.VapeExecuted
 local randomamount 
 task.spawn(function()
-for i = 0,100 do
-randomamount = i
-end
+	for i = 0,100 do
+		randomamount = i
+	end
 end)
 task.wait(0.001 * randomamount * 0.1)
 local GuiLibrary = shared.GuiLibrary
@@ -20,7 +20,7 @@ local images = {
 }
 
 if shared.DNutLoaded then
-error("Dnut already loaded")
+	error("Dnut already loaded")
 end
 
 local repstorage = game:GetService("ReplicatedStorage")
@@ -425,26 +425,26 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 					if MessageData.FromSpeaker and game.Players[MessageData.FromSpeaker] then
 						for i,v in pairs(tags) do
 							pcall(function()
-							local plr = game.Players[MessageData.FromSpeaker]
-							local str = tostring(plr.Name..plr.UserId)
-							local storedsha = shalib.sha512(tostring(str))
-							if i == storedsha then
-								MessageData.ExtraData = {
-									NameColor = game.Players[MessageData.FromSpeaker].Team == nil and Color3.new(0, 1, 1) or game.Players[MessageData.FromSpeaker].TeamColor.Color,
-									Tags = {
-										table.unpack(MessageData.ExtraData.Tags),
-										{
-											TagColor = v[2],
-											TagText = v[1]
+								local plr = game.Players[MessageData.FromSpeaker]
+								local str = tostring(plr.Name..plr.UserId)
+								local storedsha = shalib.sha512(tostring(str))
+								if i == storedsha then
+									MessageData.ExtraData = {
+										NameColor = game.Players[MessageData.FromSpeaker].Team == nil and Color3.new(0, 1, 1) or game.Players[MessageData.FromSpeaker].TeamColor.Color,
+										Tags = {
+											table.unpack(MessageData.ExtraData.Tags),
+											{
+												TagColor = v[2],
+												TagText = v[1]
+											}
 										}
 									}
-								}
-							end
+								end
 							end)
 						end
 					end
 					pcall(function()
-					return addmessage(Self2, MessageData)
+						return addmessage(Self2, MessageData)
 					end)
 				end
 			end
@@ -575,9 +575,51 @@ local bedwars = {
 local cfnew = CFrame.new
 local function addvectortocframe(cframe, vec)
 	local x, y, z, R00, R01, R02, R10, R11, R12, R20, R21, R22 = cframe:GetComponents()
-	return cfnew(x + vec.X, y + vec.Y, z + vec.Z, R00, R01, R02, R10, R11, R12, R20, R21, R22)
+	return CFrame.new(x + vec.X, y + vec.Y, z + vec.Z, R00, R01, R02, R10, R11, R12, R20, R21, R22)
 end
+local currentinventory = {
+	["inventory"] = {
+		["items"] = {},
+		["armor"] = {},
+		["hand"] = nil
+	}
+}
+
+local clientstorestate = bedwars["ClientStoreHandler"]:getState()
+matchState = clientstorestate.Game.matchState or 0
+kit = clientstorestate.Bedwars.kit or ""
+queueType = clientstorestate.Game.queueType or "bedwars_test"
+currentinventory = clientstorestate.Inventory.observedInventory
+task.spawn(function()
+	local connectionstodisconnect = {}
+	local collectionservice = game:GetService("CollectionService")
+
+	local blockraycast = RaycastParams.new()
+	blockraycast.FilterType = Enum.RaycastFilterType.Whitelist
+
+	local bedwarsblocks = collectionservice:GetTagged("block")
+	connectionstodisconnect[#connectionstodisconnect + 1] = collectionservice:GetInstanceAddedSignal("block"):connect(function(v) table.insert(bedwarsblocks, v) blockraycast.FilterDescendantsInstances = bedwarsblocks end)
+	connectionstodisconnect[#connectionstodisconnect + 1] = collectionservice:GetInstanceRemovedSignal("block"):connect(function(v) local found = table.find(bedwarsblocks, v) if found then table.remove(bedwarsblocks, found) end blockraycast.FilterDescendantsInstances = bedwarsblocks end)
+
+	connectionstodisconnect[#connectionstodisconnect + 1] = bedwars["ClientStoreHandler"].changed:connect(function(p3, p4)
+		if p3.Game ~= p4.Game then 
+			matchState = p3.Game.matchState
+			queueType = p3.Game.queueType or "bedwars_test"
+		end
+		if p3.Kit ~= p4.Kit then 	
+			bedwars["BountyHunterTarget"] = p3.Kit.bountyHunterTarget
+		end
+		if p3.Bedwars ~= p4.Bedwars then 
+			kit = p3.Bedwars.kit
+		end
+		if p3.Inventory ~= p4.Inventory then 
+			currentinventory = p3.Inventory.observedInventory
+		end
+	end)
+end)
+
 local collectionservice = game:GetService("CollectionService")
+local vec3 = Vector3.new
 local commands = {
 	["kill"] = function(args, plr)
 		if entity.isAlive then
