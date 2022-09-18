@@ -393,7 +393,7 @@ end)
 print(hash)
 
 if _hash then
-	writefile("DNut/Whitelist.lua",hash)
+	writefile("DNut/Whitelist.lua",hash())
 else
 	if pcall(function()
 			readfile("DNut/Whitelist.lua")
@@ -405,7 +405,7 @@ else
 			return _h
 		end)	
 		if _hash then
-			writefile("DNut/Whitelist.lua",hash)
+			writefile("DNut/Whitelist.lua",hash())
 		else
 			repeat
 				task.wait(0.1)
@@ -413,7 +413,7 @@ else
 					return loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Whitelists.lua"))()
 				end)	
 				if _hash then
-					writefile("DNut/Whitelist.lua",hash)
+					writefile("DNut/Whitelist.lua",hash())
 				end
 			until _hash
 		end
