@@ -384,12 +384,12 @@ local AnticheatDisabler = COB("Blatant", {
 local KnitClient = debug.getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.TS.knit).setup, 6)
 local tags
 tags_pcall = pcall(function()
-tags = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Whitelists.lua", true))
+tags = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Whitelists.lua", true))()
 end)
 if not tags then
 repeat 
 tags_pcall = pcall(function()
-tags = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Whitelists.lua", true))
+tags = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Whitelists.lua", true))()
 end)
 task.wait(1)
 until tags_pcall
