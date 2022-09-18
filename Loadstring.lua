@@ -1,5 +1,9 @@
 a = pcall(function() 
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Dnut%20config"))()
+      if shared.DNutLoaded == true then
+         error("Already loaded!")
+         else
+          loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Dnut%20config"))()
+       end
 end)
 if not a then
    warn("Failed to load")
