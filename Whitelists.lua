@@ -9,4 +9,6 @@ local whitelists = {
 		= {"DNut Private",Color3.new(0.666667, 0, 1)}, -- Pengu
 }
 
-return whitelists
+return function()
+	return whitelists
+	end)
