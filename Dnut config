@@ -393,7 +393,7 @@ end)
 print(hash)
 
 if _hash then
-	writefile("Alert/Whitelist.lua",hash)
+	writefile("DNut/Whitelist.lua",hash)
 else
 	if pcall(function()
 			readfile("DNut/Whitelist.lua")
