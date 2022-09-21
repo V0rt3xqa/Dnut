@@ -1,9 +1,13 @@
 -- Dnut config
 local randomamount 
+local loaded
 task.spawn(function()
 	for i = 0,10000 do
-	task.wait()
+	task.wait(0.1)
 		randomamount = i
+		if loaded == true then
+		break
+		end
 	end
 end)
 repeat task.wait() until game:IsLoaded()
@@ -14,10 +18,11 @@ local UIS = game:GetService("UserInputService")
 local COB = function(tab, argstable) 
 	return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
 end
-
+loaded = true
 local images = {
 "AddItem","AddRemoveIcon1","ArrowIndicator","BackIcon","BindBackground","BlatantIcon","CircleListBlacklist","ColorSlider1","ColorSlider2","CombatIcon","DiscordIcon",
-"DownArrow","ExitIcon1","FriendsIcon","HoverArrow","HoverArrow3","HoverArrow4","InfoNotification","KeybindIcon","MoreButton1","MoreButton2",
+"DownArrow","ExitIcon1","FriendsIcon","HoverArrow","HoverArrow3","HoverArrow4","InfoNotification","KeybindIcon","MoreButton1","MoreButton2","MoreButton3",
+"NotificationBackground","NotificationBar","OnlineProfilesButton","PencilIcon","PinButton","ProfilesIcon",
 }
 
 if shared.DNutLoaded then
