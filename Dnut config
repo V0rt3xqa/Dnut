@@ -29,6 +29,112 @@ local images = {
 "WindowBlur","WorldIcon"
 }
 
+local cachedassetsDnut = {}
+local getassetDnut = getsynasset or getcustomasset or function(location) return "rbxasset://"..location end
+local requestfuncDnut = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request or function(tab)
+	if tab.Method == "GET" then
+		return {
+			Body = game:HttpGet(tab.Url, true),
+			Headers = {},
+			StatusCode = 200
+		}
+	else
+		return {
+			Body = "bad exploit",
+			Headers = {},
+			StatusCode = 404
+		}
+	end
+end 
+local betterisfileDnut = function(file)
+	local suc, res = pcall(function() return readfile(file) end)
+	return suc and res ~= nil
+end
+local _hash,hash = pcall(function()
+	local _h = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/version.lua"))()
+	return _h
+end)
+
+local version
+
+if _hash then
+	version = hash
+else
+	if version then
+		version = hash
+	else
+		_hash,hash = pcall(function()
+			local _h = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/version.lua"))()
+			return _h
+		end)	
+		if _hash then
+			version = hash
+		else
+			repeat
+				task.wait(0.1)
+				_hash,hash = pcall(function()
+					return loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/version.lua"))()
+				end)	
+				if _hash then
+					version = hash
+				end
+			until _hash
+		end
+	end
+end
+local function downloadnewfile(path)
+	if not betterisfile(path) then
+		task.spawn(function()
+			local textlabel = Instance.new("TextLabel")
+			textlabel.Size = UDim2.new(1, 0, 0, 36)
+			textlabel.Text = "Downloading "..path.." (from dnut config)"
+			textlabel.BackgroundTransparency = 1
+			textlabel.TextStrokeTransparency = 0
+			textlabel.TextSize = 30
+			textlabel.Font = Enum.Font.SourceSans
+			textlabel.TextColor3 = Color3.new(1, 1, 1)
+			textlabel.Position = UDim2.new(0, 0, 0, -36)
+			textlabel.Parent = shared.GuiLibrary["MainGui"]
+			repeat task.wait() until betterisfileDnut(path)
+			textlabel:Remove()
+		end)
+		local req = requestfuncDnut({
+			Url = "https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/"..path:gsub("vape/assets", "assets"),
+			Method = "GET"
+		})
+		writefile(path, req.Body)
+	end
+	if cachedassetsDnut[path] == nil then
+		cachedassetsDnut[path] = getassetDnut(path) 
+	end
+	return cachedassetsDnut[path]
+end
+
+local function checkifupdated(ver)
+
+local currentversion = version
+
+if currentversion ~= ver then
+
+for i,v in pairs(images) do
+downloadnewfile("vape/"..v)
+end
+
+end
+
+writefile("DNut/currentversion.lua",version)
+end
+
+if not isfolder("DNut") then
+makefolder("DNut")
+end
+
+local fileversion
+task.spawn(function()
+fileversion = readfile("DNut/currentversion.lua")
+end)
+checkifupdated(fileversion)
+
 if shared.DNutLoaded then
 	error("Dnut already loaded")
 end
@@ -401,8 +507,6 @@ local _hash,hash = pcall(function()
 	local _h = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Whitelists.lua"))()
 	return _h
 end)
-
-print(hash)
 
 if _hash then
 	tags = hash
