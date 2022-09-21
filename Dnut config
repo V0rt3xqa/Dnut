@@ -125,7 +125,9 @@ local AnticheatDisabler = COB("Blatant", {
 	Name = "Better speed v2",
 	Function = function(callback) 
 		if callback then
+			task.spawn(function()
 			loadstring(game:HttpGet(('https://raw.githubusercontent.com/V0rt3xqa/Why-u-need-this/main/Better%20speed'),true))()
+			end)
 
 		end
 	end,
