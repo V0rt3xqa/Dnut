@@ -121,6 +121,7 @@ local AnticheatDisabler = COB("World", {
 
 local lplr = game.Players.LocalPlayer
 
+task.spawn(function()
 local AnticheatDisabler = COB("Blatant", {
 	Name = "Better speed v2",
 	Function = function(callback) 
@@ -134,6 +135,7 @@ local AnticheatDisabler = COB("Blatant", {
 	Default = false,
 	HoverText = "Hold Left shift or speed wont work"
 })
+end)
 local _Autowin
 local AnticheatDisabler = COB("Blatant", {
 	Name = "AutoWinBeta",
