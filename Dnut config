@@ -1,12 +1,13 @@
 -- Dnut config
-repeat task.wait() until game:IsLoaded()
-repeat task.wait() until shared.GuiLibrary and shared.VapeExecuted
-local randomamount 
 task.spawn(function()
-	for i = 0,100 do
+	for i = 0,10000 do
+	task.wait()
 		randomamount = i
 	end
 end)
+repeat task.wait() until game:IsLoaded()
+repeat task.wait() until shared.GuiLibrary and shared.VapeExecuted
+local randomamount 
 task.wait(0.001 * randomamount * 0.1)
 local GuiLibrary = shared.GuiLibrary
 local UIS = game:GetService("UserInputService")
