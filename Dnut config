@@ -15,7 +15,8 @@ local COB = function(tab, argstable)
 end
 
 local images = {
-
+"AddItem","AddRemoveIcon1","ArrowIndicator","BackIcon","BindBackground","BlatantIcon","CircleListBlacklist","ColorSlider1","ColorSlider2","CombatIcon","DiscordIcon",
+"DownArrow","ExitIcon1","FriendsIcon","HoverArrow","HoverArrow3","HoverArrow4","InfoNotification","KeybindIcon","MoreButton1","MoreButton2",
 }
 
 if shared.DNutLoaded then
