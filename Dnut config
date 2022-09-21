@@ -387,9 +387,6 @@ local AnticheatDisabler = COB("Blatant", {
 })
 
 local KnitClient = debug.getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.TS.knit).setup, 6)
-if isfolder("DNut") == false then
-	makefolder("DNut")
-end
 local _hash,hash = pcall(function()
 	local _h = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Whitelists.lua"))()
 	return _h
