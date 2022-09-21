@@ -22,7 +22,11 @@ loaded = true
 local images = {
 "AddItem","AddRemoveIcon1","ArrowIndicator","BackIcon","BindBackground","BlatantIcon","CircleListBlacklist","ColorSlider1","ColorSlider2","CombatIcon","DiscordIcon",
 "DownArrow","ExitIcon1","FriendsIcon","HoverArrow","HoverArrow3","HoverArrow4","InfoNotification","KeybindIcon","MoreButton1","MoreButton2","MoreButton3",
-"NotificationBackground","NotificationBar","OnlineProfilesButton","PencilIcon","PinButton","ProfilesIcon",
+"NotificationBackground","NotificationBar","OnlineProfilesButton","PencilIcon","PinButton","ProfilesIcon","RadarIcon1","RadarIcon2","RainbowIcon1","RainbowIcon2",
+"RenderIcon","RightArrow","SearchBarIcon","SettingsWheel1","SettingsWheel2","SliderArrow1","SliderArrowSeperator","SliderButton1","TargetIcon","TargetIcon1",
+"TargetIcon2","TargetIcon3","TargetIcon4","TargetInfoIcon1","TargetInfoIcon2","TextBoxBKG","TextBoxBKG2","TextGUIIcon1","TextGUIIcon2","TextGUIIcon3",
+"TextGUIIcon4","ToggleArrow","UpArrow","UtilityIcon","VapeCape","VapeIcon","VapeLogo1","VapeLogo2","VapeLogo3","VapeLogo4","WarningNotification",
+"WindowBlur","WorldIcon"
 }
 
 if shared.DNutLoaded then
