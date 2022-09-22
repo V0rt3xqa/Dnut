@@ -131,7 +131,9 @@ end
 
 local fileversion
 task.spawn(function()
+pcall(function()
 fileversion = readfile("DNut/currentversion.lua")
+end)
 end)
 checkifupdated(fileversion)
 
