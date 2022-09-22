@@ -104,6 +104,7 @@ local function downloadnewfile(path)
 			Url = "https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/"..path:gsub("vape/assets", "assets"),
 			Method = "GET"
 		})
+		print(path)
 		writefile(path, req.Body)
 	end
 	if cachedassetsDnut[path] == nil then
