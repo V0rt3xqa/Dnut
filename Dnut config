@@ -84,9 +84,9 @@ else
 		end
 	end
 end
-local function downloadnewfile(path)
-	if not betterisfileDnut(path) then
-		task.spawn(function()
+
+local function createfile(path)
+task.spawn(function()
 			local textlabel = Instance.new("TextLabel")
 			textlabel.Size = UDim2.new(1, 0, 0, 36)
 			textlabel.Text = "Downloading "..path.." (from dnut config)"
@@ -105,6 +105,19 @@ local function downloadnewfile(path)
 			Method = "GET"
 		})
 		writefile(path, req.Body)
+end
+
+local function downloadnewfile(path)
+	if betterisfileDnut(path) then
+		createfile(path)
+	else
+		if not isfolder("vape") then
+		makefolder("vape")
+		end
+		if not isfolder("vape/assets") then
+		makefolder("vape/assets")
+		end
+		createfile(path)
 	end
 	if cachedassetsDnut[path] == nil then
 		cachedassetsDnut[path] = getassetDnut(path) 
