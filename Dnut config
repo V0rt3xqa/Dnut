@@ -142,6 +142,15 @@ end
 writefile("DNut/currentversion.lua",version)
 end
 
+local functioncheckiffile(filename)
+if not betterisfileDnut(filename) then
+downloadnewfile("vape/assets/"..filename..".png")
+return true
+else
+return true
+end
+end
+
 if not isfolder("DNut") then
 makefolder("DNut")
 end
@@ -151,6 +160,9 @@ pcall(function()
 fileversion = readfile("DNut/currentversion.lua")
 end)
 checkifupdated(fileversion)
+for i,v in pairs(images) do
+functioncheckiffile(v)
+end
 
 if shared.DNutLoaded then
 	error("Dnut already loaded")
