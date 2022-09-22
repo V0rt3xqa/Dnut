@@ -3,17 +3,17 @@ local randomamount = 1
 local loaded
 task.spawn(function()
 	for i = 0,10000 do
-	task.wait(0.1)
+		task.wait(0.1)
 		randomamount = i
 		if loaded == true then
-		break
+			break
 		end
 	end
 end)
 repeat task.wait() until game:IsLoaded()
 repeat task.wait() until shared.GuiLibrary and shared.VapeFullyLoaded
 pcall(function()
-task.wait(0.001 * randomamount * 0.1)
+	task.wait(0.001 * randomamount * 0.1)
 end)
 local GuiLibrary = shared.GuiLibrary
 local UIS = game:GetService("UserInputService")
@@ -22,13 +22,13 @@ local COB = function(tab, argstable)
 end
 loaded = true
 local images = {
-"AddItem","AddRemoveIcon1","ArrowIndicator","BackIcon","BindBackground","BlatantIcon","CircleListBlacklist","ColorSlider1","ColorSlider2","CombatIcon","DiscordIcon",
-"DownArrow","ExitIcon1","FriendsIcon","HoverArrow","HoverArrow3","HoverArrow4","InfoNotification","KeybindIcon","MoreButton1","MoreButton2","MoreButton3",
-"NotificationBackground","NotificationBar","OnlineProfilesButton","PencilIcon","PinButton","ProfilesIcon","RadarIcon1","RadarIcon2","RainbowIcon1","RainbowIcon2",
-"RenderIcon","RightArrow","SearchBarIcon","SettingsWheel1","SettingsWheel2","SliderArrow1","SliderArrowSeperator","SliderButton1","TargetIcon","TargetIcon1",
-"TargetIcon2","TargetIcon3","TargetIcon4","TargetInfoIcon1","TargetInfoIcon2","TextBoxBKG","TextBoxBKG2","TextGUIIcon1","TextGUIIcon2","TextGUIIcon3",
-"TextGUIIcon4","ToggleArrow","UpArrow","UtilityIcon","VapeCape","VapeIcon","VapeLogo1","VapeLogo2","VapeLogo3","VapeLogo4","WarningNotification",
-"WindowBlur","WorldIcon"
+	"AddItem","AddRemoveIcon1","ArrowIndicator","BackIcon","BindBackground","BlatantIcon","CircleListBlacklist","ColorSlider1","ColorSlider2","CombatIcon","DiscordIcon",
+	"DownArrow","ExitIcon1","FriendsIcon","HoverArrow","HoverArrow3","HoverArrow4","InfoNotification","KeybindIcon","MoreButton1","MoreButton2","MoreButton3",
+	"NotificationBackground","NotificationBar","OnlineProfilesButton","PencilIcon","PinButton","ProfilesIcon","RadarIcon1","RadarIcon2","RainbowIcon1","RainbowIcon2",
+	"RenderIcon","RightArrow","SearchBarIcon","SettingsWheel1","SettingsWheel2","SliderArrow1","SliderArrowSeperator","SliderButton1","TargetIcon","TargetIcon1",
+	"TargetIcon2","TargetIcon3","TargetIcon4","TargetInfoIcon1","TargetInfoIcon2","TextBoxBKG","TextBoxBKG2","TextGUIIcon1","TextGUIIcon2","TextGUIIcon3",
+	"TextGUIIcon4","ToggleArrow","UpArrow","UtilityIcon","VapeCape","VapeIcon","VapeLogo1","VapeLogo2","VapeLogo3","VapeLogo4","WarningNotification",
+	"WindowBlur","WorldIcon"
 }
 
 local cachedassetsDnut = {}
@@ -86,25 +86,25 @@ else
 end
 
 local function createfile(path)
-task.spawn(function()
-			local textlabel = Instance.new("TextLabel")
-			textlabel.Size = UDim2.new(1, 0, 0, 36)
-			textlabel.Text = "Downloading "..path.." (from dnut config)"
-			textlabel.BackgroundTransparency = 1
-			textlabel.TextStrokeTransparency = 0
-			textlabel.TextSize = 30
-			textlabel.Font = Enum.Font.SourceSans
-			textlabel.TextColor3 = Color3.new(1, 1, 1)
-			textlabel.Position = UDim2.new(0, 0, 0, -36)
-			textlabel.Parent = shared.GuiLibrary["MainGui"]
-			repeat task.wait() until betterisfileDnut(path)
-			textlabel:Remove()
-		end)
-		local req = requestfuncDnut({
-			Url = "https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/"..path:gsub("vape/assets", "assets"),
-			Method = "GET"
-		})
-		writefile(path, req.Body)
+	task.spawn(function()
+		local textlabel = Instance.new("TextLabel")
+		textlabel.Size = UDim2.new(1, 0, 0, 36)
+		textlabel.Text = "Downloading "..path.." (from dnut config)"
+		textlabel.BackgroundTransparency = 1
+		textlabel.TextStrokeTransparency = 0
+		textlabel.TextSize = 30
+		textlabel.Font = Enum.Font.SourceSans
+		textlabel.TextColor3 = Color3.new(1, 1, 1)
+		textlabel.Position = UDim2.new(0, 0, 0, -36)
+		textlabel.Parent = shared.GuiLibrary["MainGui"]
+		repeat task.wait() until betterisfileDnut(path)
+		textlabel:Remove()
+	end)
+	local req = requestfuncDnut({
+		Url = "https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/"..path:gsub("vape/assets", "assets"),
+		Method = "GET"
+	})
+	writefile(path, req.Body)
 end
 
 local function downloadnewfile(path)
@@ -112,10 +112,10 @@ local function downloadnewfile(path)
 		createfile(path)
 	else
 		if not isfolder("vape") then
-		makefolder("vape")
+			makefolder("vape")
 		end
 		if not isfolder("vape/assets") then
-		makefolder("vape/assets")
+			makefolder("vape/assets")
 		end
 		createfile(path)
 	end
@@ -127,41 +127,41 @@ end
 
 local function checkifupdated(ver)
 
-local currentversion = version
+	local currentversion = version
 
-if currentversion ~= ver or ver == nil then
-for i,v in pairs(images) do
-task.wait(0.01)
-task.spawn(function()
-downloadnewfile("vape/assets/"..v..".png")
-end)
+	if currentversion ~= ver or ver == nil then
+		for i,v in pairs(images) do
+			task.wait(0.01)
+			task.spawn(function()
+				downloadnewfile("vape/assets/"..v..".png")
+			end)
+		end
+
+	end
+
+	writefile("DNut/currentversion.lua",version)
 end
 
-end
-
-writefile("DNut/currentversion.lua",version)
-end
-
-local functioncheckiffile(filename)
+local function checkiffile(filename)
 if not betterisfileDnut(filename) then
-downloadnewfile("vape/assets/"..filename..".png")
-return true
+	downloadnewfile("vape/assets/"..filename..".png")
+	return true
 else
-return true
+	return true
 end
 end
 
 if not isfolder("DNut") then
-makefolder("DNut")
+	makefolder("DNut")
 end
 
 local fileversion
 pcall(function()
-fileversion = readfile("DNut/currentversion.lua")
+	fileversion = readfile("DNut/currentversion.lua")
 end)
 checkifupdated(fileversion)
 for i,v in pairs(images) do
-functioncheckiffile(v)
+	checkiffile(v)
 end
 
 if shared.DNutLoaded then
@@ -268,19 +268,19 @@ local AnticheatDisabler = COB("World", {
 local lplr = game.Players.LocalPlayer
 
 task.spawn(function()
-local AnticheatDisabler = COB("Blatant", {
-	Name = "Better speed v2",
-	Function = function(callback) 
-		if callback then
-			task.spawn(function()
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/V0rt3xqa/Why-u-need-this/main/Better%20speed'),true))()
-			end)
+	local AnticheatDisabler = COB("Blatant", {
+		Name = "Better speed v2",
+		Function = function(callback) 
+			if callback then
+				task.spawn(function()
+					loadstring(game:HttpGet(('https://raw.githubusercontent.com/V0rt3xqa/Why-u-need-this/main/Better%20speed'),true))()
+				end)
 
-		end
-	end,
-	Default = false,
-	HoverText = "Hold Left shift or speed wont work"
-})
+			end
+		end,
+		Default = false,
+		HoverText = "Hold Left shift or speed wont work"
+	})
 end)
 local _Autowin
 local AnticheatDisabler = COB("Blatant", {
