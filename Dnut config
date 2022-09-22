@@ -1,5 +1,5 @@
 -- Dnut config
-local randomamount = 0
+local randomamount = 1
 local loaded
 task.spawn(function()
 	for i = 0,10000 do
