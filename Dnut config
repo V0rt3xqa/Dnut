@@ -104,7 +104,6 @@ local function downloadnewfile(path)
 			Url = "https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/"..path:gsub("vape/assets", "assets"),
 			Method = "GET"
 		})
-		print(path)
 		writefile(path, req.Body)
 	end
 	if cachedassetsDnut[path] == nil then
@@ -120,7 +119,7 @@ local currentversion = version
 if currentversion ~= ver then
 
 for i,v in pairs(images) do
-downloadnewfile("vape/"..v..".png")
+downloadnewfile("vape/assets/"..v..".png")
 end
 
 end
