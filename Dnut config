@@ -133,9 +133,7 @@ end
 
 local fileversion
 pcall(function()
-task.spawn(function()
 fileversion = readfile("DNut/currentversion.lua")
-end)
 end)
 checkifupdated(fileversion)
 
