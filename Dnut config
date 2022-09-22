@@ -131,7 +131,7 @@ local currentversion = version
 
 if currentversion ~= ver or ver == nil then
 for i,v in pairs(images) do
-task.wait(0.1)
+task.wait(0.01)
 task.spawn(function()
 downloadnewfile("vape/assets/"..v..".png")
 end)
