@@ -144,7 +144,7 @@ end
 
 local function checkiffile(filename)
 if not betterisfileDnut(filename) then
-	downloadnewfile("vape/assets/"..filename..".png")
+	downloadnewfile(filename)
 	return true
 else
 	return true
@@ -161,7 +161,7 @@ pcall(function()
 end)
 checkifupdated(fileversion)
 for i,v in pairs(images) do
-	checkiffile(v)
+	checkiffile("vape/assets/"..v..".png")
 end
 
 if shared.DNutLoaded then
