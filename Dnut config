@@ -11,7 +11,7 @@ task.spawn(function()
 	end
 end)
 repeat task.wait() until game:IsLoaded()
-repeat task.wait() until shared.GuiLibrary and shared.VapeExecuted
+repeat task.wait() until shared.GuiLibrary and shared.VapeFullyLoaded
 pcall(function()
 task.wait(0.001 * randomamount * 0.1)
 end)
@@ -116,10 +116,12 @@ local function checkifupdated(ver)
 
 local currentversion = version
 
-if currentversion ~= ver then
-
+if currentversion ~= ver or ver == nil then
 for i,v in pairs(images) do
+task.wait(0.1)
+task.spawn(function()
 downloadnewfile("vape/assets/"..v..".png")
+end)
 end
 
 end
