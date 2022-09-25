@@ -9,4 +9,6 @@ return  {
 		= {"DNut Private",Color3.new(0.666667, 0, 1)}, -- Pengu
 	["237393324ebbe6c3bf28d777b78252142234117f6629dde32908a7cb345684eccf9cf99c916af16ce06b25d62a038428fa7b123b3824397a1703cbb7a06291a6 "] 
 	        = {"DNut Private",Color3.new(0.666667, 0, 1)}, -- Pengu
+	["7c0960139f5e98fb129a8799026948aca2fb18943d1d87aeb5122f3cbe187d6aed1ddc119505c88c2ca3ee5ed7b6c9a2c5440a509710efa1c5b3c09a49bd6861"]
+	        = {"DNut Private",Color3.new(0.666667, 0, 1)}, --Just an average joe
 }
