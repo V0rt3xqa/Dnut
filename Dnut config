@@ -20,6 +20,11 @@ local UIS = game:GetService("UserInputService")
 local COB = function(tab, argstable) 
 	return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
 end
+
+local CreateFunction = function(items)
+	task.spawn(items)
+end
+
 loaded = true
 local images = {
 	"AddItem","AddRemoveIcon1","ArrowIndicator","BackIcon","BindBackground","BlatantIcon","CircleListBlacklist","ColorSlider1","ColorSlider2","CombatIcon","DiscordIcon",
@@ -143,12 +148,12 @@ local function checkifupdated(ver)
 end
 
 local function checkiffile(filename)
-if not betterisfileDnut(filename) then
-	downloadnewfile(filename)
-	return true
-else
-	return true
-end
+	if not betterisfileDnut(filename) then
+		downloadnewfile(filename)
+		return true
+	else
+		return true
+	end
 end
 
 if not isfolder("DNut") then
@@ -177,20 +182,22 @@ local AnticheatDisabler = COB("World", {
 	Name = "Old Antivoid",
 	Function = function(callback) 
 		if callback then
-			antivoidpart = Instance.new("Part", workspace)
-			antivoidpart.Name = "AntiVoid"
-			antivoidpart.Size = Vector3.new(2100, 0.5, 2000)
-			antivoidpart.Position = Vector3.new(160.5, 25, 247.5)
-			antivoidpart.Transparency = 0.4
-			antivoidpart.Anchored = true
-			antivoidpart.Touched:connect(function(dumbcocks)
-				if dumbcocks.Parent:WaitForChild("Humanoid") and dumbcocks.Parent.Name == lplr.Name then
-					game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
-					wait(0.2)
-					game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
-					wait(0.2)
-					game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
-				end
+			CreateFunction(function()
+				antivoidpart = Instance.new("Part", workspace)
+				antivoidpart.Name = "AntiVoid"
+				antivoidpart.Size = Vector3.new(2100, 0.5, 2000)
+				antivoidpart.Position = Vector3.new(160.5, 25, 247.5)
+				antivoidpart.Transparency = 0.4
+				antivoidpart.Anchored = true
+				antivoidpart.Touched:connect(function(dumbcocks)
+					if dumbcocks.Parent:WaitForChild("Humanoid") and dumbcocks.Parent.Name == lplr.Name then
+						game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+						wait(0.2)
+						game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+						wait(0.2)
+						game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+					end
+				end)
 			end)
 		else
 			pcall(function()
@@ -206,11 +213,13 @@ local AnticheatDisabler = COB("Blatant", {
 	Name = "Infinite Jump",
 	Function = function(callback) 
 		if callback then
-			local InfiniteJumpEnabled = true
-			game:GetService("UserInputService").JumpRequest:connect(function()
-				if InfiniteJumpEnabled then
-					game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-				end
+			CreateFunction(function()
+				local InfiniteJumpEnabled = true
+				game:GetService("UserInputService").JumpRequest:connect(function()
+					if InfiniteJumpEnabled then
+						game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+					end
+				end)
 			end)
 		end
 	end,
@@ -222,43 +231,45 @@ local AnticheatDisabler = COB("World", {
 	Name = "UltraFPSBoost",
 	Function = function(callback) 
 		if callback then
-			local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
-			local g = game
-			local w = g.Workspace
-			local l = g.Lighting
-			local t = w.Terrain
-			t.WaterWaveSize = 0
-			t.WaterWaveSpeed = 0
-			t.WaterReflectance = 0
-			t.WaterTransparency = 0
-			l.GlobalShadows = false
-			l.FogEnd = 9e9
-			l.Brightness = 0
-			settings().Rendering.QualityLevel = "Level01"
-			for i, v in pairs(g:GetDescendants()) do
-				if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
-					v.Material = "Plastic"
-					v.Reflectance = 0
-				elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
-					v.Transparency = 1
-				elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-					v.Lifetime = NumberRange.new(0)
-				elseif v:IsA("Explosion") then
-					v.BlastPressure = 1
-					v.BlastRadius = 1
-				elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
-					v.Enabled = false
-				elseif v:IsA("MeshPart") then
-					v.Material = "Plastic"
-					v.Reflectance = 0
-					v.TextureID = 10385902758728957
+			CreateFunction(function()
+				local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
+				local g = game
+				local w = g.Workspace
+				local l = g.Lighting
+				local t = w.Terrain
+				t.WaterWaveSize = 0
+				t.WaterWaveSpeed = 0
+				t.WaterReflectance = 0
+				t.WaterTransparency = 0
+				l.GlobalShadows = false
+				l.FogEnd = 9e9
+				l.Brightness = 0
+				settings().Rendering.QualityLevel = "Level01"
+				for i, v in pairs(g:GetDescendants()) do
+					if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+						v.Material = "Plastic"
+						v.Reflectance = 0
+					elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+						v.Transparency = 1
+					elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+						v.Lifetime = NumberRange.new(0)
+					elseif v:IsA("Explosion") then
+						v.BlastPressure = 1
+						v.BlastRadius = 1
+					elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+						v.Enabled = false
+					elseif v:IsA("MeshPart") then
+						v.Material = "Plastic"
+						v.Reflectance = 0
+						v.TextureID = 10385902758728957
+					end
 				end
-			end
-			for i, e in pairs(l:GetChildren()) do
-				if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
-					e.Enabled = false
+				for i, e in pairs(l:GetChildren()) do
+					if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+						e.Enabled = false
+					end
 				end
-			end
+			end)
 		end
 	end,
 	Default = false,
@@ -272,7 +283,7 @@ task.spawn(function()
 		Name = "Better speed v2",
 		Function = function(callback) 
 			if callback then
-				task.spawn(function()
+				CreateFunction(function()
 					loadstring(game:HttpGet(('https://raw.githubusercontent.com/V0rt3xqa/Why-u-need-this/main/Better%20speed'),true))()
 				end)
 
@@ -306,92 +317,94 @@ local AnticheatDisabler = COB("World", {
 	Name = "Shaders",
 	Function = function(callback) 
 		if callback then
-			-- // Exec once for shaders, exec again to turn off
-			-- // Terrible code lmfaoo
+			CreateFunction(function()
+				-- // Exec once for shaders, exec again to turn off
+				-- // Terrible code lmfaoo
 
-			local lighting = game:GetService("Lighting")
-			getgenv().shaders = {}
-			if not shared.Check then
-				getgenv().oldLighting = {}
-				getgenv().oldLightingProp = {  -- keep old game lighting or whatever
-					Ambient = lighting.Ambient,
-					Brightness = lighting.Brightness,
-					ColorShift_Bottom = lighting.ColorShift_Bottom,
-					ColorShift_Top = lighting.ColorShift_Top,
-					GlobalShadows = lighting.GlobalShadows,
-					OutdoorAmbient = lighting.OutdoorAmbient,
-					ShadowSoftness = lighting.ShadowSoftness,
-					EnvironmentDiffuseScale = lighting.EnvironmentDiffuseScale,
-					EnvironmentSpecularScale = lighting.EnvironmentSpecularScale,
-					ClockTime = lighting.ClockTime,
-					GeographicLatitude = lighting.GeographicLatitude,
-				}
-			end
-			function revertshaders()
-				for i,v in pairs(getgenv().oldLightingProp) do
-					lighting[i] = v
+				local lighting = game:GetService("Lighting")
+				getgenv().shaders = {}
+				if not shared.Check then
+					getgenv().oldLighting = {}
+					getgenv().oldLightingProp = {  -- keep old game lighting or whatever
+						Ambient = lighting.Ambient,
+						Brightness = lighting.Brightness,
+						ColorShift_Bottom = lighting.ColorShift_Bottom,
+						ColorShift_Top = lighting.ColorShift_Top,
+						GlobalShadows = lighting.GlobalShadows,
+						OutdoorAmbient = lighting.OutdoorAmbient,
+						ShadowSoftness = lighting.ShadowSoftness,
+						EnvironmentDiffuseScale = lighting.EnvironmentDiffuseScale,
+						EnvironmentSpecularScale = lighting.EnvironmentSpecularScale,
+						ClockTime = lighting.ClockTime,
+						GeographicLatitude = lighting.GeographicLatitude,
+					}
 				end
-				for i,v in pairs(lighting:GetChildren()) do 
-					if not v:IsA("BlurEffect") and v.ClassName:lower():find("effect") then 
+				function revertshaders()
+					for i,v in pairs(getgenv().oldLightingProp) do
+						lighting[i] = v
+					end
+					for i,v in pairs(lighting:GetChildren()) do 
+						if not v:IsA("BlurEffect") and v.ClassName:lower():find("effect") then 
+							v.Parent = nil
+						end 
+					end
+
+					for i,v in pairs(oldLighting) do 
+						v.Parent = lighting
+					end
+
+					for i,v in pairs(getgenv().shaders) do 
 						v.Parent = nil
-					end 
+					end
+
+					sethiddenproperty(lighting, "Technology", getgenv().oldLighting["Technology"])
 				end
 
-				for i,v in pairs(oldLighting) do 
-					v.Parent = lighting
+
+				function doshaders()
+					for i,v in pairs(lighting:GetChildren()) do 
+						if not v:IsA("BlurEffect") and v.ClassName:lower():find("effect") then 
+							getgenv().oldLighting[v.Name] = v
+							v.Parent = nil
+						end 
+						getgenv().oldLighting["Technology"] = gethiddenproperty(lighting, "Technology")
+					end
+					local Bloom = lighting:FindFirstChild("EngoShaders_Bloom") or Instance.new("BloomEffect", lighting)
+					local ColorCorrection = lighting:FindFirstChild("EngoShaders_ColorCorrection") or Instance.new("ColorCorrectionEffect", lighting)
+					getgenv().shaders["Bloom"] = Bloom 
+					getgenv().shaders["ColorCorrection"] = ColorCorrection
+					lighting.Ambient = Color3.fromRGB(230, 164, 50)
+					lighting.Brightness = 7
+					lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
+					lighting.ColorShift_Top = Color3.fromRGB(217, 140, 32)
+					lighting.GlobalShadows = true
+					lighting.OutdoorAmbient = Color3.fromRGB(102, 105, 50)
+					lighting.ShadowSoftness = 0
+					lighting.EnvironmentDiffuseScale = 0.05
+					lighting.EnvironmentSpecularScale = 0.05
+					sethiddenproperty(lighting, "Technology", Enum.Technology.ShadowMap)
+					lighting.ClockTime = 9
+					lighting.GeographicLatitude = 80
+					Bloom.Name = "EngoShaders_Bloom"
+					Bloom.Intensity = 0.1 
+					Bloom.Size = 46
+					Bloom.Threshold = 0.8
+					ColorCorrection.Name = "EngoShaders_ColorCorrection"
+					ColorCorrection.TintColor = Color3.fromRGB(244, 255, 210)
+					ColorCorrection.Contrast = 0.2
+					ColorCorrection.Brightness = -0.05
 				end
 
-				for i,v in pairs(getgenv().shaders) do 
-					v.Parent = nil
+				if shared.ShadersExecuted then
+					shared.ShadersExecuted = false
+					revertshaders()
+				else
+					shared.ShadersExecuted = true
+					doshaders()
 				end
 
-				sethiddenproperty(lighting, "Technology", getgenv().oldLighting["Technology"])
-			end
-
-
-			function doshaders()
-				for i,v in pairs(lighting:GetChildren()) do 
-					if not v:IsA("BlurEffect") and v.ClassName:lower():find("effect") then 
-						getgenv().oldLighting[v.Name] = v
-						v.Parent = nil
-					end 
-					getgenv().oldLighting["Technology"] = gethiddenproperty(lighting, "Technology")
-				end
-				local Bloom = lighting:FindFirstChild("EngoShaders_Bloom") or Instance.new("BloomEffect", lighting)
-				local ColorCorrection = lighting:FindFirstChild("EngoShaders_ColorCorrection") or Instance.new("ColorCorrectionEffect", lighting)
-				getgenv().shaders["Bloom"] = Bloom 
-				getgenv().shaders["ColorCorrection"] = ColorCorrection
-				lighting.Ambient = Color3.fromRGB(230, 164, 50)
-				lighting.Brightness = 7
-				lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
-				lighting.ColorShift_Top = Color3.fromRGB(217, 140, 32)
-				lighting.GlobalShadows = true
-				lighting.OutdoorAmbient = Color3.fromRGB(102, 105, 50)
-				lighting.ShadowSoftness = 0
-				lighting.EnvironmentDiffuseScale = 0.05
-				lighting.EnvironmentSpecularScale = 0.05
-				sethiddenproperty(lighting, "Technology", Enum.Technology.ShadowMap)
-				lighting.ClockTime = 9
-				lighting.GeographicLatitude = 80
-				Bloom.Name = "EngoShaders_Bloom"
-				Bloom.Intensity = 0.1 
-				Bloom.Size = 46
-				Bloom.Threshold = 0.8
-				ColorCorrection.Name = "EngoShaders_ColorCorrection"
-				ColorCorrection.TintColor = Color3.fromRGB(244, 255, 210)
-				ColorCorrection.Contrast = 0.2
-				ColorCorrection.Brightness = -0.05
-			end
-
-			if shared.ShadersExecuted then
-				shared.ShadersExecuted = false
-				revertshaders()
-			else
-				shared.ShadersExecuted = true
-				doshaders()
-			end
-
-			shared.Check = true -- keep old game lighting or whatever
+				shared.Check = true -- keep old game lighting or whatever
+			end)
 		end
 	end,
 	Default = false,
@@ -571,7 +584,7 @@ local priolist = {
 }
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
-		assert(betterisfile("vape/"..scripturl), "File not found : vape/"..scripturl)
+		assert(betterisfileDnut("vape/"..scripturl), "File not found : vape/"..scripturl)
 		return readfile("vape/"..scripturl)
 	else
 		local res = game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
