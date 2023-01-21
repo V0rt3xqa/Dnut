@@ -294,8 +294,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.HangGliderUse:FireServer(unpack(args))
-workspace.Gliders.HangGlider:Destroy()
-wait(0.5)
+
 until yes == true
 				end)
 
