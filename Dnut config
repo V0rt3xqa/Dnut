@@ -293,6 +293,33 @@ task.spawn(function()
 		HoverText = "Hold Left shift or speed wont work"
 	})
 end)
+
+task.spawn(function()
+	local AnticheatDisabler = COB("Blatant", {
+		Name = "AC DISABLER",
+		Function = function(callback) 
+			if callback then
+				CreateFunction(function()
+repeat
+task.wait()
+
+
+local args = {
+    [1] = {}
+}
+
+game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.HangGliderUse:FireServer(unpack(args))
+
+until yes == true
+				end)
+
+			end
+		end,
+		Default = false,
+		HoverText = "Buy hang glider"
+	})
+end)
+
 local _Autowin
 local AnticheatDisabler = COB("Blatant", {
 	Name = "AutoWinBeta",
