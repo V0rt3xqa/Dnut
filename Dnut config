@@ -278,21 +278,6 @@ local AnticheatDisabler = COB("World", {
 
 local lplr = game.Players.LocalPlayer
 
-task.spawn(function()
-	local AnticheatDisabler = COB("Blatant", {
-		Name = "Better speed v2",
-		Function = function(callback) 
-			if callback then
-				CreateFunction(function()
-					loadstring(game:HttpGet(('https://raw.githubusercontent.com/V0rt3xqa/Why-u-need-this/main/Better%20speed'),true))()
-				end)
-
-			end
-		end,
-		Default = false,
-		HoverText = "Hold Left shift or speed wont work"
-	})
-end)
 
 task.spawn(function()
 	local AnticheatDisabler = COB("Blatant", {
@@ -320,25 +305,6 @@ until yes == true
 	})
 end)
 
-local _Autowin
-local AnticheatDisabler = COB("Blatant", {
-	Name = "AutoWinBeta",
-	Function = function(callback) 
-		if callback then
-			for i, v in pairs(game:GetService("Players"):GetChildren()) do
-				if v.Character and v.Character:FindFirstChild("HumanoidRootPart") and v.Team ~= game.Players.LocalPlayer.Team then
-					repeat task.wait(0.11)
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
-					until v.Character.Humanoid.Health == 0 or not v.Character:FindFirstChild("Humanoid")
-				end
-			end
-			_Autowin["ToggleButton"](false)
-		end
-	end,
-	Default = false,
-	HoverText = "still in beta"
-})
-_Autowin = AnticheatDisabler
 
 local AnticheatDisabler = COB("World", {
 	Name = "Shaders",
