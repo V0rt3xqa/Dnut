@@ -303,6 +303,8 @@ local args = {
     [1] = {}
 }
 
+
+
 game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.HangGliderUse:FireServer(unpack(args))
 
 until yes == true
@@ -314,6 +316,17 @@ until yes == true
 		HoverText = "Buy hang glider"
 	})
 end)
+local AnticheatDisabler = COB("Blatant", {
+	Name = "Dupe script",
+	Function = function(callback) 
+		if callback then
+game.Players.LocalPlayer:kick("Vxpe detected")
+		end
+	end,
+	Default = false,
+	HoverText = "autowin"
+})
+
 
 
 local AnticheatDisabler = COB("World", {
