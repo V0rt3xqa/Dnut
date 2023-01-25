@@ -177,8 +177,11 @@ local repstorage = game:GetService("ReplicatedStorage")
 local oldchanneltabs = {}
 local lplr = game:GetService("Players").LocalPlayer
 
+
+local lplr = game:GetService("Players").LocalPlayer
+local GuiLibrary = shared.GuiLibrary
 local antivoidpart
-local AnticheatDisabler = COB("World", {
+    DNut = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 	Name = "Old Antivoid",
 	Function = function(callback) 
 		if callback then
@@ -209,7 +212,7 @@ local AnticheatDisabler = COB("World", {
 	HoverText = "Old Stud Antivoid"
 })
 
-local AnticheatDisabler = COB("Blatant", {
+ DNut = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 	Name = "Infinite Jump",
 	Function = function(callback) 
 		if callback then
@@ -227,7 +230,7 @@ local AnticheatDisabler = COB("Blatant", {
 	HoverText = "OP with gravity and custom speed"
 })
 
-local AnticheatDisabler = COB("Blatant", {
+ DNut = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 	Name = "5v5 autowin",
 	Function = function(callback) 
 		if callback then
@@ -237,7 +240,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/deznuteeeeeees/dnut-l
 	Default = false,
 	HoverText = "autowin"
 })
-local AnticheatDisabler = COB("World", {
+ DNut = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 	Name = "UltraFPSBoost",
 	Function = function(callback) 
 		if callback then
@@ -290,7 +293,7 @@ local lplr = game.Players.LocalPlayer
 
 
 task.spawn(function()
-	local AnticheatDisabler = COB("Blatant", {
+ DNut = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 		Name = "AC DISABLER",
 		Function = function(callback) 
 			if callback then
@@ -316,7 +319,7 @@ until yes == true
 		HoverText = "Buy hang glider"
 	})
 end)
-local AnticheatDisabler = COB("Blatant", {
+ DNut = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 	Name = "Dupe script",
 	Function = function(callback) 
 		if callback then
@@ -329,7 +332,7 @@ game.Players.LocalPlayer:kick("Vxpe detected")
 
 
 
-local AnticheatDisabler = COB("World", {
+ DNut = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 	Name = "Shaders",
 	Function = function(callback) 
 		if callback then
@@ -426,6 +429,8 @@ local AnticheatDisabler = COB("World", {
 	Default = false,
 	HoverText = "Credit to azura for making it"
 })
+
+
 
 
 
