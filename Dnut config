@@ -192,7 +192,7 @@ local antivoidpart
         antivoidpart.Position = Vector3.new(160.5, 25, 247.5)
         antivoidpart.Transparency = 0.4
         antivoidpart.Anchored = true
-		antivoidpart.Color = Color3.fromRGB(48, 25, 52)
+		antivoidpart.Color = Color3.fromRGB(246, 136, 32)
 		antivoidpart.Material = Enum.Material.Neon
 				antivoidpart.Touched:connect(function(dumbcocks)
 					if dumbcocks.Parent:WaitForChild("Humanoid") and dumbcocks.Parent.Name == lplr.Name then
