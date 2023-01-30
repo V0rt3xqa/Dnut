@@ -186,12 +186,14 @@ local antivoidpart
 	Function = function(callback) 
 		if callback then
 			CreateFunction(function()
-				antivoidpart = Instance.new("Part", workspace)
-				antivoidpart.Name = "AntiVoid"
-				antivoidpart.Size = Vector3.new(2100, 0.5, 2000)
-				antivoidpart.Position = Vector3.new(160.5, 25, 247.5)
-				antivoidpart.Transparency = 0.4
-				antivoidpart.Anchored = true
+        antivoidpart = Instance.new("Part", workspace)
+        antivoidpart.Name = "AntiVoid"
+        antivoidpart.Size = Vector3.new(2100, 0.5, 2000)
+        antivoidpart.Position = Vector3.new(160.5, 25, 247.5)
+        antivoidpart.Transparency = 0.4
+        antivoidpart.Anchored = true
+		antivoidpart.Color = Color3.fromRGB(48, 25, 52)
+		antivoidpart.Material = Enum.Material.Neon
 				antivoidpart.Touched:connect(function(dumbcocks)
 					if dumbcocks.Parent:WaitForChild("Humanoid") and dumbcocks.Parent.Name == lplr.Name then
 						game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
