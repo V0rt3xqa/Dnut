@@ -232,16 +232,6 @@ local antivoidpart
 	HoverText = "OP with gravity and custom speed"
 })
 
- DNut = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
-	Name = "5v5 autowin",
-	Function = function(callback) 
-		if callback then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/deznuteeeeeees/dnut-loadstring/main/random%20stuff"))()
-		end
-	end,
-	Default = false,
-	HoverText = "autowin"
-})
  DNut = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 	Name = "UltraFPSBoost",
 	Function = function(callback) 
