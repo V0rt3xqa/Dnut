@@ -181,7 +181,7 @@ local lplr = game:GetService("Players").LocalPlayer
 local lplr = game:GetService("Players").LocalPlayer
 local GuiLibrary = shared.GuiLibrary
 local antivoidpart
-    DNut = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+    DNutantivoid = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 	Name = "Old Antivoid",
 	Function = function(callback) 
 		if callback then
@@ -214,7 +214,7 @@ local antivoidpart
 	HoverText = "Old Stud Antivoid"
 })
 
- DNut = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+ DNutinfinitejump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 	Name = "Infinite Jump",
 	Function = function(callback) 
 		if callback then
@@ -232,60 +232,11 @@ local antivoidpart
 	HoverText = "OP with gravity and custom speed"
 })
 
- DNut = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
-	Name = "UltraFPSBoost",
-	Function = function(callback) 
-		if callback then
-			CreateFunction(function()
-				local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
-				local g = game
-				local w = g.Workspace
-				local l = g.Lighting
-				local t = w.Terrain
-				t.WaterWaveSize = 0
-				t.WaterWaveSpeed = 0
-				t.WaterReflectance = 0
-				t.WaterTransparency = 0
-				l.GlobalShadows = false
-				l.FogEnd = 9e9
-				l.Brightness = 0
-				settings().Rendering.QualityLevel = "Level01"
-				for i, v in pairs(g:GetDescendants()) do
-					if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
-						v.Material = "Plastic"
-						v.Reflectance = 0
-					elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
-						v.Transparency = 1
-					elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-						v.Lifetime = NumberRange.new(0)
-					elseif v:IsA("Explosion") then
-						v.BlastPressure = 1
-						v.BlastRadius = 1
-					elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
-						v.Enabled = false
-					elseif v:IsA("MeshPart") then
-						v.Material = "Plastic"
-						v.Reflectance = 0
-						v.TextureID = 10385902758728957
-					end
-				end
-				for i, e in pairs(l:GetChildren()) do
-					if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
-						e.Enabled = false
-					end
-				end
-			end)
-		end
-	end,
-	Default = false,
-	HoverText = "FPS Booster"
-})
-
 local lplr = game.Players.LocalPlayer
 
 
 task.spawn(function()
- DNut = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+ DNutgliderdisabler = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 		Name = "Glider disabler",
 		Function = function(callback) 
 			if callback then
@@ -313,7 +264,7 @@ until yes == true
 		HoverText = "Buy hang glider"
 	})
 end)
- DNut = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+ DNutfakedupe = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 	Name = "Dupe script",
 	Function = function(callback) 
 		if callback then
@@ -321,112 +272,8 @@ game.Players.LocalPlayer:kick("Vxpe detected")
 		end
 	end,
 	Default = false,
-	HoverText = "autowin"
+	HoverText = "dupe"
 })
-
-
-
- DNut = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
-	Name = "Shaders",
-	Function = function(callback) 
-		if callback then
-			CreateFunction(function()
-				-- // Exec once for shaders, exec again to turn off
-				-- // Terrible code lmfaoo
-
-				local lighting = game:GetService("Lighting")
-				getgenv().shaders = {}
-				if not shared.Check then
-					getgenv().oldLighting = {}
-					getgenv().oldLightingProp = {  -- keep old game lighting or whatever
-						Ambient = lighting.Ambient,
-						Brightness = lighting.Brightness,
-						ColorShift_Bottom = lighting.ColorShift_Bottom,
-						ColorShift_Top = lighting.ColorShift_Top,
-						GlobalShadows = lighting.GlobalShadows,
-						OutdoorAmbient = lighting.OutdoorAmbient,
-						ShadowSoftness = lighting.ShadowSoftness,
-						EnvironmentDiffuseScale = lighting.EnvironmentDiffuseScale,
-						EnvironmentSpecularScale = lighting.EnvironmentSpecularScale,
-						ClockTime = lighting.ClockTime,
-						GeographicLatitude = lighting.GeographicLatitude,
-					}
-				end
-				function revertshaders()
-					for i,v in pairs(getgenv().oldLightingProp) do
-						lighting[i] = v
-					end
-					for i,v in pairs(lighting:GetChildren()) do 
-						if not v:IsA("BlurEffect") and v.ClassName:lower():find("effect") then 
-							v.Parent = nil
-						end 
-					end
-
-					for i,v in pairs(oldLighting) do 
-						v.Parent = lighting
-					end
-
-					for i,v in pairs(getgenv().shaders) do 
-						v.Parent = nil
-					end
-
-					sethiddenproperty(lighting, "Technology", getgenv().oldLighting["Technology"])
-				end
-
-
-				function doshaders()
-					for i,v in pairs(lighting:GetChildren()) do 
-						if not v:IsA("BlurEffect") and v.ClassName:lower():find("effect") then 
-							getgenv().oldLighting[v.Name] = v
-							v.Parent = nil
-						end 
-						getgenv().oldLighting["Technology"] = gethiddenproperty(lighting, "Technology")
-					end
-					local Bloom = lighting:FindFirstChild("EngoShaders_Bloom") or Instance.new("BloomEffect", lighting)
-					local ColorCorrection = lighting:FindFirstChild("EngoShaders_ColorCorrection") or Instance.new("ColorCorrectionEffect", lighting)
-					getgenv().shaders["Bloom"] = Bloom 
-					getgenv().shaders["ColorCorrection"] = ColorCorrection
-					lighting.Ambient = Color3.fromRGB(230, 164, 50)
-					lighting.Brightness = 7
-					lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
-					lighting.ColorShift_Top = Color3.fromRGB(217, 140, 32)
-					lighting.GlobalShadows = true
-					lighting.OutdoorAmbient = Color3.fromRGB(102, 105, 50)
-					lighting.ShadowSoftness = 0
-					lighting.EnvironmentDiffuseScale = 0.05
-					lighting.EnvironmentSpecularScale = 0.05
-					sethiddenproperty(lighting, "Technology", Enum.Technology.ShadowMap)
-					lighting.ClockTime = 9
-					lighting.GeographicLatitude = 80
-					Bloom.Name = "EngoShaders_Bloom"
-					Bloom.Intensity = 0.1 
-					Bloom.Size = 46
-					Bloom.Threshold = 0.8
-					ColorCorrection.Name = "EngoShaders_ColorCorrection"
-					ColorCorrection.TintColor = Color3.fromRGB(244, 255, 210)
-					ColorCorrection.Contrast = 0.2
-					ColorCorrection.Brightness = -0.05
-				end
-
-				if shared.ShadersExecuted then
-					shared.ShadersExecuted = false
-					revertshaders()
-				else
-					shared.ShadersExecuted = true
-					doshaders()
-				end
-
-				shared.Check = true -- keep old game lighting or whatever
-			end)
-		end
-	end,
-	Default = false,
-	HoverText = "Credit to azura for making it"
-})
-
-
-
-
 
 local KnitClient = debug.getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.TS.knit).setup, 6)
 local _hash,hash = pcall(function()
