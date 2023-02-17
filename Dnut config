@@ -338,11 +338,11 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 				tab.AddMessageToChannel = function(Self2, MessageData)
 					if MessageData.FromSpeaker and game.Players[MessageData.FromSpeaker] then
 						for i,v in pairs(tags) do
-							pcall(function()
-								local plr = game.Players[MessageData.FromSpeaker]
+							local plr = game.Players[MessageData.FromSpeaker]
 								local str = tostring(plr.Name..plr.UserId)
 								local storedsha = shalib.sha512(tostring(str))
 								if i == storedsha then
+								print(storedsha)
 									MessageData.ExtraData = {
 										NameColor = game.Players[MessageData.FromSpeaker].Team == nil and Color3.new(0, 1, 1) or game.Players[MessageData.FromSpeaker].TeamColor.Color,
 										Tags = {
@@ -354,7 +354,6 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 										}
 									}
 								end
-							end)
 						end
 					end
 					pcall(function()
