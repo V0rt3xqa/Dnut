@@ -306,7 +306,7 @@ else
 		end
 	end
 end
-
+print('loaded hashes')
 local priolist = {
 	["DEFAULT"] = 0,
 	["DNUT PRIVATE"] = 1,
