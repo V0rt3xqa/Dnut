@@ -1,20 +1,20 @@
-local players = game:GetService("Players")
-local httpservice = game:GetService("HttpService")
-local lplr = players.LocalPlayer
-local entityadded = Instance.new("BindableEvent")
-local entityremoved = Instance.new("BindableEvent")
 local entity = {
     entityList = {},
     entityConnections = {},
     entityPlayerConnections = {},
     entityIds = {},
-    isAlive = players.LocalPlayer.Character,
+    isAlive = false,
     character = {
         Head = {},
         Humanoid = {},
         HumanoidRootPart = {}
     }
 }
+local players = game:GetService("Players")
+local httpservice = game:GetService("HttpService")
+local lplr = players.LocalPlayer
+local entityadded = Instance.new("BindableEvent")
+local entityremoved = Instance.new("BindableEvent")
 local entityupdated = Instance.new("BindableEvent")
 do
     entity.entityAddedEvent = {
