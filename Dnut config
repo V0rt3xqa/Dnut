@@ -12,6 +12,7 @@ task.spawn(function()
 end)
 repeat task.wait() until game:IsLoaded()
 repeat task.wait() until shared.GuiLibrary and shared.VapeFullyLoaded
+print('loading...')
 pcall(function()
 	task.wait(0.001 * randomamount * 0.1)
 end)
