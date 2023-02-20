@@ -181,6 +181,32 @@ local lplr = game:GetService("Players").LocalPlayer
 
 local lplr = game:GetService("Players").LocalPlayer
 local GuiLibrary = shared.GuiLibrary
+local CheckMagnitude = {["Enabled"] = false}
+CheckMagnitude = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+	["Name"] = "CheckMagnitude",
+	["Function"] = function(Enabled)
+		if Enabled then
+			local mousepos = lplr:GetMouse().UnitRay
+			local rayparams = RaycastParams.new()
+			rayparams.FilterDescendantsInstances = {workspace.Map, workspace:FindFirstChild("SpectatorPlatform")}
+			rayparams.FilterType = Enum.RaycastFilterType.Whitelist
+			local ray = workspace:Raycast(mousepos.Origin, mousepos.Direction * 10000, rayparams)
+			if not ray then
+				createwarning("DNut","Unable to find position.",5)
+				return fly.ToggleButton(false)
+			else
+				ray = ray.Position
+			end
+			local magnitude = (lplr.Character.HumanoidRootPart.Position - ray).magnitude
+			if magnitude > 70 then
+				createwarning("DNut","will get anticheated.(if no ground in path)",5)
+			else
+				createwarning("DNut","will NOT get anticheated!",5)	
+			end
+			CheckMagnitude.ToggleButton(false)
+		end
+	end
+})
 local antivoidpart
     DNutantivoid = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 	Name = "Old Antivoid",
