@@ -9,7 +9,7 @@ return  {
 		= {"DNut Private",Color3.new(0.666667, 0, 1)}, -- Pengu
 	["237393324ebbe6c3bf28d777b78252142234117f6629dde32908a7cb345684eccf9cf99c916af16ce06b25d62a038428fa7b123b3824397a1703cbb7a06291a6 "] 
 	        = {"DNut Private",Color3.new(0.666667, 0, 1)}, -- Pengu
-	["7c0960139f5e98fb129a8799026948aca2fb18943d1d87aeb5122f3cbe187d6aed1ddc119505c88c2ca3ee5ed7b6c9a2c5440a509710efa1c5b3c09a49bd6861"]
-	        = {"DNut Private",Color3.new(0.666667, 0, 1)}, --Just an average joe
+	["66a7a647317bf00d4783952a3da946a694ad2f59d5cb4130948285dd03c29a6c8a5aaf0c0dafd8d3b9a33abf2ff407f2a7ca0cabd3bdc803e95f406cc61e6f79"]
+	        = {"DNut Private",Color3.new(0.666667, 0, 1)}, --piss boy
 }
 --whitelists
