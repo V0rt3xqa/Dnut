@@ -950,6 +950,7 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 					local _r,_return = pcall(function()
 						return addmessage(Self2, MessageData)
 					end)
+					print(_r,_return)
 					return (_r and _return or old(Self2,MessageData)
 				end
 			end
