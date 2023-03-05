@@ -840,7 +840,7 @@ game.Players.PlayerAdded:Connect(function(v)
 	local a = Functions.IsSpecialIngame()
 	if a and didnotsay[v] == nil and a ~= lplr then
 		didnotsay[v] = true
-		repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..a.Name.." "..clients.ChatStrings2.Galaxy, "All")
+		repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..a.Name.." "..clients.ChatStrings2.dnut, "All")
 	end								
 end)
 task.spawn(function()
