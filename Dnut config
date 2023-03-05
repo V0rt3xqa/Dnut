@@ -840,7 +840,7 @@ local Functions = {
 			if data then
 				type = "DNut User"
 			else
-				print(data,plr)
+				type = "DEFAULT"
 			end
 			--print(clients.ClientUsers[plr],plr)
 		else
