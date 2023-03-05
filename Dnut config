@@ -846,8 +846,8 @@ local didnotsay = {}
 game.Players.PlayerAdded:Connect(function(v)
 	task.wait(0.01)
 	local a = Functions.IsSpecialIngame()
-	if a and didnotsay[v.Name] == nil and a ~= lplr then
-		didnotsay[v.Name] = true
+	if a and didnotsay[a.Name] == nil and a ~= lplr then
+		didnotsay[a.Name] = true
 		repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..a.Name.." "..clients.ChatStrings2.dnut, "All")
 	end								
 end)
@@ -856,11 +856,11 @@ task.spawn(function()
 	for i,v in pairs(game.Players:GetPlayers()) do
 		task.wait()
 		a = Functions.IsSpecialIngame()
-		if didnotsay[v.Name] == nil and a ~= lplr then
+		if didnotsay[a.Name] == nil and a ~= lplr then
 			--local ab = ( Functions:CheckPlayerType(lplr) == ("DEFAULT" or "GALAXY USER") )
 			local ab = true
-			if a and ab and didnotsay[v.Name] == nil then
-				didnotsay[v.Name] = true
+			if a and ab and didnotsay[a.Name] == nil then
+				didnotsay[a.Name] = true
 				repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..Functions.IsSpecialIngame().Name.." "..clients.ChatStrings2.dnut, "All")
 			end									
 		end
