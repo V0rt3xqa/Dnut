@@ -305,8 +305,24 @@ DNutfakedupe = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].Creat
 	end,
 	Default = false,
 	HoverText = "dupe"
-})
-
+}))
+local Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton(
+{Name = "Lobby Disabler(client)"
+, Function = function (callback)
+	if callback then
+		if GuiLibrary.ObjectsThatCanBeSaved["Lobby CheckToggle"]["Api"].Enabled then
+			local a = lplr.Character
+			local b = a.HumanoidRootPart
+			b.Parent = nil
+			createwarning("DNut","Disabling ac...",1)
+			task.wait(0.1)
+			b.Parent = a
+			createwarning("DNut","Disabled ac!",1)
+		end
+	end
+end,}
+)
+GuiLibrary.ObjectsThatCanBeSaved["Lobby CheckToggle"]["Api"].Enabled
 local KnitClient = debug.getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.TS.knit).setup, 6)
 local _hash,hash = pcall(function()
 	local _h = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Whitelists.lua"))()
