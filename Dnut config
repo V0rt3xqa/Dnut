@@ -17,6 +17,14 @@ pcall(function()
 	task.wait(0.001 * randomamount * 0.1)
 end)
 local GuiLibrary = shared.GuiLibrary
+local function createwarning(title, text, delay)
+	local suc, res = pcall(function()
+		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/WarningNotification.png")
+		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
+		return frame
+	end)
+	return (suc and res)
+end
 local UIS = game:GetService("UserInputService")
 local COB = function(tab, argstable) 
 	return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
@@ -190,7 +198,7 @@ CheckMagnitude = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].Creat
 			local ray = workspace:Raycast(mousepos.Origin, mousepos.Direction * 10000, rayparams)
 			if not ray then
 				createwarning("DNut","Unable to find position.",5)
-				return fly.ToggleButton(false)
+				return CheckMagnitude.ToggleButton(false)
 			else
 				ray = ray.Position
 			end
@@ -205,19 +213,19 @@ CheckMagnitude = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].Creat
 	end
 })
 local antivoidpart
-    DNutantivoid = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+DNutantivoid = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 	Name = "Old Antivoid",
 	Function = function(callback) 
 		if callback then
 			CreateFunction(function()
-        antivoidpart = Instance.new("Part", workspace)
-        antivoidpart.Name = "AntiVoid"
-        antivoidpart.Size = Vector3.new(2100, 0.5, 2000)
-        antivoidpart.Position = Vector3.new(160.5, 25, 247.5)
-        antivoidpart.Transparency = 0.4
-        antivoidpart.Anchored = true
-		antivoidpart.Color = Color3.fromRGB(246, 136, 32)
-		antivoidpart.Material = Enum.Material.Neon
+				antivoidpart = Instance.new("Part", workspace)
+				antivoidpart.Name = "AntiVoid"
+				antivoidpart.Size = Vector3.new(2100, 0.5, 2000)
+				antivoidpart.Position = Vector3.new(160.5, 25, 247.5)
+				antivoidpart.Transparency = 0.4
+				antivoidpart.Anchored = true
+				antivoidpart.Color = Color3.fromRGB(246, 136, 32)
+				antivoidpart.Material = Enum.Material.Neon
 				antivoidpart.Touched:connect(function(dumbcocks)
 					if dumbcocks.Parent:WaitForChild("Humanoid") and dumbcocks.Parent.Name == lplr.Name then
 						game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
@@ -238,7 +246,7 @@ local antivoidpart
 	HoverText = "Old Stud Antivoid"
 })
 
- DNutinfinitejump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+DNutinfinitejump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 	Name = "Infinite Jump",
 	Function = function(callback) 
 		if callback then
@@ -260,26 +268,26 @@ local lplr = game.Players.LocalPlayer
 
 
 task.spawn(function()
- DNutgliderdisabler = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+	DNutgliderdisabler = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 		Name = "Glider disabler",
 		Function = function(callback) 
 			if callback then
 				CreateFunction(function()
-repeat
-task.wait()
+					repeat
+						task.wait()
 
 
-local args = {
-    [1] = {}
-}
+						local args = {
+							[1] = {}
+						}
 
 
 
-game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.HangGliderUse:FireServer(unpack(args))
-wait(0.01)
-workspace.Gliders.HangGlider:Destroy()
+						game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.HangGliderUse:FireServer(unpack(args))
+						wait(0.01)
+						workspace.Gliders.HangGlider:Destroy()
 
-until yes == true
+					until yes == true
 				end)
 
 			end
@@ -288,11 +296,11 @@ until yes == true
 		HoverText = "Buy hang glider"
 	})
 end)
- DNutfakedupe = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+DNutfakedupe = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 	Name = "Dupe script",
 	Function = function(callback) 
 		if callback then
-game.Players.LocalPlayer:kick("Vxpe detected")
+			game.Players.LocalPlayer:kick("Vxpe detected")
 		end
 	end,
 	Default = false,
@@ -850,7 +858,7 @@ task.spawn(function()
 		a = Functions.IsSpecialIngame()
 		if didnotsay[v] == nil and a ~= lplr then
 			--local ab = ( Functions:CheckPlayerType(lplr) == ("DEFAULT" or "GALAXY USER") )
-			ab = true
+			local ab = true
 			if a and ab and didnotsay[v] == nil then
 				didnotsay[v] = true
 				repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..Functions.IsSpecialIngame().Name.." "..clients.ChatStrings2.dnut, "All")
@@ -1018,7 +1026,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 			if newent then entity.entityUpdatedEvent:Fire(newent) end
 		end
 	end
-if priolist[string.upper(Functions.CheckPlayerType(lplr))] > 0 and plr == lplr then
+	if priolist[string.upper(Functions.CheckPlayerType(lplr))] > 0 and plr == lplr then
 		if tab.Message:len() >= 5 and tab.Message:sub(1, 5):lower() == ";cmds" then
 			local tab = {}
 			for i,v in pairs(commands) do
