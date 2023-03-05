@@ -21,7 +21,7 @@ local UIS = game:GetService("UserInputService")
 local COB = function(tab, argstable) 
 	return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
 end
-
+local repstorage = game.ReplicatedStorage
 local CreateFunction = function(items)
 	task.spawn(items)
 end
@@ -176,9 +176,6 @@ end
 
 local repstorage = game:GetService("ReplicatedStorage")
 local oldchanneltabs = {}
-local lplr = game:GetService("Players").LocalPlayer
-
-
 local lplr = game:GetService("Players").LocalPlayer
 local GuiLibrary = shared.GuiLibrary
 local CheckMagnitude = {["Enabled"] = false}
