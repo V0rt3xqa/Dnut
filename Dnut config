@@ -946,6 +946,7 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 							end
 						end)
 					end
+					task.wait()
 					return addmessage(Self2,MessageData)
 				end
 			end
