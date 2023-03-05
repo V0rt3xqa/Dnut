@@ -369,7 +369,7 @@ local shalib = loadstring(GetURL("Libraries/sha.lua"))()
 
 local a=syn and syn.queue_on_teleport or queue_on_teleport or fluxus and fluxus.queue_on_teleport or function()end
 game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(b)
-	if b==Enum.TeleportState.Started then a("pcall(function() shared.DNutLoaded = false end)") end end)
+	if b==Enum.TeleportState.Started then a("pcall(function() shared.DNutLoaded = false; shared.DNutPrivateLoaded = false; end)") end end)
 
 shared.DNutLoaded = true
 
@@ -1071,7 +1071,8 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 		end
 	end
 end)
-GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = "DNut | v 1.1"
-GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = "DNut | v 1.1"
-GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = "DNut | v 1.1"
+local text = (shared.DNutPrivateLoaded and "DNut Private" or "DNut")
+GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = text.." | v 1.1"
+GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = text.." | v 1.1"
+GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = text.." | v 1.1"
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Position = UDim2.new(1, -175 - 20, 1, -25)
