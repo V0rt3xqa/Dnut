@@ -806,7 +806,7 @@ local priolist = {
 }
 local Functions = {
 	CheckPlayerType = function(plr)
-		local type = clients.ClientUsers[plr.Name]
+		local type
 		local color = Color3.new()
 		-- for i,v in pairs(tags.private) do
 		-- 	if i == shalib.sha512(tostring(plr.Name..plr.UserId)) then
