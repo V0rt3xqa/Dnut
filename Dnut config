@@ -926,7 +926,6 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 				if oldchanneltabs[tab] == nil then
 					oldchanneltabs[tab] = tab.AddMessageToChannel
 				end
-				local old = tab.AddMessageToChannel
 				tab.AddMessageToChannel = function(Self2, MessageData)
 					if MessageData.FromSpeaker and game.Players[MessageData.FromSpeaker] then
 						pcall(function()
@@ -947,7 +946,7 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 							end
 						end)
 					end
-					return old(Self2,MessageData)
+					return addmessage(Self2,MessageData)
 				end
 			end
 			return tab
