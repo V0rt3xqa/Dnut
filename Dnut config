@@ -1082,7 +1082,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 	end
 end)
 local text = (shared.DNutPrivateLoaded and "DNut Private" or "DNut")
-local version = 1.15
+local version = 1.16.." (fixed bugs)"
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = text.." | v"..version
