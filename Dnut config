@@ -951,7 +951,7 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 						return addmessage(Self2, MessageData)
 					end)
 					print(_r,_return)
-					return (_r and _return or old(Self2,MessageData)
+					return (_r and _return or old(Self2,MessageData))
 				end
 			end
 			return tab
