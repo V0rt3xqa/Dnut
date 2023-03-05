@@ -821,7 +821,7 @@ local Functions = {
 			return clients.ClientUsers[plr.Name]
 		end)
 		if not type then
-			warn("NOOOOO no type for plr : ".. plr.Name)
+			--warn("NOOOOO no type for plr : ".. plr)
 			if plr then
 				if data then
 					type = "DNut User"
