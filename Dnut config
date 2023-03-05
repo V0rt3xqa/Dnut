@@ -1072,3 +1072,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 		end
 	end
 end)
+GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = "DNut | v 1.1"
+GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = "DNut | v 1.1"
+GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = "DNut | v 1.1"
+GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Position = UDim2.new(1, -175 - 20, 1, -25)
