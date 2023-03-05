@@ -927,7 +927,7 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 					oldchanneltabs[tab] = tab.AddMessageToChannel
 				end
 				local old = tab.AddMessageToChannel
-				tab.AddMessageToChannel = function(Self2, MessageData,...)
+				tab.AddMessageToChannel = function(Self2, MessageData)
 					if MessageData.FromSpeaker and game.Players[MessageData.FromSpeaker] then
 						pcall(function()
 							local plr = game.Players[MessageData.FromSpeaker]
@@ -950,7 +950,7 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 					local _r,_return = pcall(function()
 						return addmessage(Self2, MessageData)
 					end)
-					return (_r and _return or old(Self2,MessageData,...)
+					return (_r and _return or old(Self2,MessageData)
 				end
 			end
 			return tab
