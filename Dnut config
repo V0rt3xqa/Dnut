@@ -806,7 +806,7 @@ local priolist = {
 }
 local Functions = {
 	CheckPlayerType = function(plr)
-		local type = clients.ClientUsers[plr]
+		local type = clients.ClientUsers[plr.Name]
 		local color = Color3.new()
 		-- for i,v in pairs(tags.private) do
 		-- 	if i == shalib.sha512(tostring(plr.Name..plr.UserId)) then
@@ -834,7 +834,7 @@ local Functions = {
 			color = Color3.new()
 		end
 		local plr,data = pcall(function()
-			return clients.ClientUsers[plr]
+			return clients.ClientUsers[plr.Name]
 		end)
 		if plr then
 			if data then
@@ -1046,7 +1046,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 				end)
 			end)
 			createwarning("DNut", plr.Name.." is using "..client.."!", 60)
-			clients.ClientUsers[plr.Name] = client:upper()..' USER'
+			clients.ClientUsers[plr.Name] = true
 			local ind, newent = entity.getEntityFromPlayer(plr)
 			if newent then entity.entityUpdatedEvent:Fire(newent) end
 		end
