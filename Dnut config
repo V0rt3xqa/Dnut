@@ -958,6 +958,7 @@ task.wait(0.2)
 if getconnections then
 	for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
 		if v.Function and #debug.getupvalues(v.Function) > 0 and type(debug.getupvalues(v.Function)[1]) == "table" and getmetatable(debug.getupvalues(v.Function)[1]) and getmetatable(debug.getupvalues(v.Function)[1]).GetChannel then
+			task.wait(.15)
 			debug.getupvalues(v.Function)[1]:SwitchCurrentChannel("All")
 		end
 	end
