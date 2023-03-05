@@ -808,22 +808,6 @@ local Functions = {
 	CheckPlayerType = function(plr)
 		local type
 		local color = Color3.new()
-		-- for i,v in pairs(tags.private) do
-		-- 	if i == shalib.sha512(tostring(plr.Name..plr.UserId)) then
-		-- 		type = "DNut Private"
-		-- 		color = v
-		-- 	end
-		-- end
-		-- for i,v in pairs(tags.developer) do
-		-- 	if i == shalib.sha512(tostring(plr.Name..plr.UserId)) then
-		-- 		type = "DNut Developer"
-		-- 		color = v
-		-- 	end
-		-- end
-		-- for i,v in pairs(tags) do
-		-- 	if i == shalib.sha512(tostring(plr.Name..plr.UserId)) then
-		-- 	end
-		-- end
 		for i,v in pairs(tags) do
 			if i == shalib.sha512(tostring(plr.Name..plr.UserId)) then
 				type = v[1]
@@ -836,15 +820,17 @@ local Functions = {
 		local plr,data = pcall(function()
 			return clients.ClientUsers[plr.Name]
 		end)
-		if plr then
-			if data then
-				type = "DNut User"
+		if not type then
+			warn("NOOOOO no type for plr : ".. plr.Name)
+			if plr then
+				if data then
+					type = "DNut User"
+				else
+					type = "DEFAULT"
+				end
 			else
 				type = "DEFAULT"
 			end
-			--print(clients.ClientUsers[plr],plr)
-		else
-			type = "DEFAULT"
 		end
 		return type,color
 	end,
