@@ -885,7 +885,7 @@ task.spawn(function()
 		if didnotsay[a.Name] == nil and a ~= lplr then
 			--local ab = ( Functions:CheckPlayerType(lplr) == ("DEFAULT" or "GALAXY USER") )
 			local ab = true
-			if a and ab and didnotsay[a.Name] == nil then
+			if a ~= "DEFAULT" and a ~= "DNUT USER" and ab and didnotsay[a.Name] == nil then
 				didnotsay[a.Name] = true
 				repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..Functions.IsSpecialIngame().Name.." "..clients.ChatStrings2.dnut, "All")
 			end									
