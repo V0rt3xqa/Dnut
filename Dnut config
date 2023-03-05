@@ -871,7 +871,7 @@ local getconnections = getconnections
 local didnotsay = {}
 game.Players.PlayerAdded:Connect(function(v)
 	task.wait(0.01)
-	local a = Functions.IsSpecialIngame()
+	local a = Functions.IsSpecialIngame(v)
 	if a and didnotsay[a.Name] == nil and a ~= lplr then
 		didnotsay[a.Name] = true
 		repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..a.Name.." "..clients.ChatStrings2.dnut, "All")
@@ -881,7 +881,7 @@ task.spawn(function()
 	local a
 	for i,v in pairs(game.Players:GetPlayers()) do
 		task.wait()
-		a = Functions.IsSpecialIngame()
+		a = Functions.IsSpecialIngame(v)
 		if didnotsay[a.Name] == nil and a ~= lplr then
 			--local ab = ( Functions:CheckPlayerType(lplr) == ("DEFAULT" or "GALAXY USER") )
 			local ab = true
