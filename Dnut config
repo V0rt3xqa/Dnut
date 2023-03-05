@@ -946,9 +946,10 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 							end
 						end)
 					end
-					pcall(function()
+					local _r,_return = pcall(function()
 						return addmessage(Self2, MessageData)
 					end)
+					return (_r and _return or nil)
 				end
 			end
 			return tab
