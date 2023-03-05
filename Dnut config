@@ -965,7 +965,16 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 		end
 	end
 end
+local a = false
+task.spawn(function()
 game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Wait()
+a = true;
+end)
+task.spawn(function()
+task.wait(2)
+a = true;
+end)
+repeat task.wait() until a
 task.wait(0.2)
 if getconnections then
 	for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
