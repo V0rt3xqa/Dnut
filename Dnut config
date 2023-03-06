@@ -265,6 +265,33 @@ DNutinfinitejump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].C
 })
 
 local lplr = game.Players.LocalPlayer
+do
+local args = {
+    [1] = {
+        ["raised"] = true
+    }
+}
+    crash = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	Name = "server killer",
+	Function = function(callback)
+		if callback then
+game.DescendantAdded:Connect(function (v)
+    task.wait()
+    if v.Name == "InfernalShields" then
+        v:Destroy()
+    end
+end)
+
+while task.wait() do
+game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.UseInfernalShield:FireServer(unpack(args))
+      end
+		end
+	end,
+	HoverText = "need shielder kit to use"
+})
+end
+
+
 
 
 task.spawn(function()
@@ -1077,7 +1104,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 	end
 end)
 local text = (shared.DNutPrivateLoaded and "DNut Private" or "DNut")
-local version = "1.16 (fixed bugs)"
+local version = "1.16b (added server killer)"
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = text.." | v"..version
