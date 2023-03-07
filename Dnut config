@@ -403,7 +403,7 @@ game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(b)
 
 shared.DNutLoaded = true
 
-local clients = {
+shared.clients = {
 	ChatStrings1 = {
 		["KVOP25KYFPPP4"] = "vape",
 		["IO12GP56P4LGR"] = "future",
@@ -418,6 +418,7 @@ local clients = {
 	},
 	ClientUsers = {}
 }
+local clients = shared.clients
 local cachedassets = {}
 local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request or function(tab)
 	if tab.Method == "GET" then
@@ -848,10 +849,9 @@ local Functions = {
 			return clients.ClientUsers[plr.Name]
 		end)
 		if not type then
-			--warn("NOOOOO no type for plr : ".. plr)
 			if plr then
 				if data then
-					type = "DNut User"
+					type = data
 				else
 					type = "DEFAULT"
 				end
@@ -1068,7 +1068,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 				end)
 			end)
 			createwarning("DNut", plr.Name.." is using "..client.."!", 60)
-			clients.ClientUsers[plr.Name] = true
+			clients.ClientUsers[plr.Name] = client:upper()..' USER'
 			local ind, newent = entity.getEntityFromPlayer(plr)
 			if newent then entity.entityUpdatedEvent:Fire(newent) end
 		end
