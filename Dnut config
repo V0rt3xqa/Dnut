@@ -343,8 +343,10 @@ local Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].Cre
 					b.Parent = nil
 					createwarning("DNut","Disabling ac...",1)
 					task.wait(0.1)
+					a.Humanoid:SetState(Enum.HumanoidStateType.Dead)
 					b.Parent = a
 					createwarning("DNut","Disabled ac!",1)
+					a.Humanoid:SetState(Enum.HumanoidStateType.Running)
 				else
 					game.Players.LocalPlayer.Character.Humanoid.Health = 0;
 					createwarning("DNut","Undisabled ac!",1)
