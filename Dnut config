@@ -340,10 +340,11 @@ local Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].Cre
 				if GuiLibrary.ObjectsThatCanBeSaved["Lobby CheckToggle"]["Api"].Enabled then
 					local a = lplr.Character
 					local b = a.HumanoidRootPart
+					a.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+					task.wait(0.01)
 					b.Parent = nil
 					createwarning("DNut","Disabling ac...",1)
 					task.wait(0.1)
-					a.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
 					b.Parent = a
 					createwarning("DNut","Disabled ac!",1)
 					a.Humanoid:ChangeState(Enum.HumanoidStateType.Running)
