@@ -266,29 +266,29 @@ DNutinfinitejump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].C
 
 local lplr = game.Players.LocalPlayer
 do
-local args = {
-    [1] = {
-        ["raised"] = true
-    }
-}
-    crash = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
-	Name = "server killer",
-	Function = function(callback)
-		if callback then
-game.DescendantAdded:Connect(function (v)
-    task.wait()
-    if v.Name == "InfernalShields" then
-        v:Destroy()
-    end
-end)
+	local args = {
+		[1] = {
+			["raised"] = true
+		}
+	}
+	crash = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+		Name = "server killer",
+		Function = function(callback)
+			if callback then
+				game.DescendantAdded:Connect(function (v)
+					task.wait()
+					if v.Name == "InfernalShields" then
+						v:Destroy()
+					end
+				end)
 
-while task.wait() do
-game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.UseInfernalShield:FireServer(unpack(args))
-      end
-		end
-	end,
-	HoverText = "need shielder kit to use"
-})
+				while task.wait() do
+					game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.UseInfernalShield:FireServer(unpack(args))
+				end
+			end
+		end,
+		HoverText = "need shielder kit to use"
+	})
 end
 
 
@@ -994,12 +994,12 @@ for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEven
 end
 local a = false
 task.spawn(function()
-game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Wait()
-a = true;
+	game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Wait()
+	a = true;
 end)
 task.spawn(function()
-task.wait(2)
-a = true;
+	task.wait(2)
+	a = true;
 end)
 repeat task.wait() until a
 task.wait(0.2)
@@ -1106,31 +1106,31 @@ end)
 
 local effect = {}
 effect = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
-Name = "DragonBreathEffect",
-Function = function (callback)
-	if callback then
-		while task.wait() do
-			if not effect.Enabled then return end
-			game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.DragonBreath:FireServer({["player"] = game:GetService("Players").LocalPlayer})
+	Name = "DragonBreathEffect",
+	Function = function (callback)
+		if callback then
+			while task.wait() do
+				if not effect.Enabled then return end
+				game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.DragonBreath:FireServer({["player"] = game:GetService("Players").LocalPlayer})
+			end
 		end
-	end
-end
-Default = false,
-HoverText = "Dragon Breath Effect."
+	end,
+	Default = false,
+	HoverText = "Dragon Breath Effect."
 })
 local effect = {}
 effect = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
-Name = "PartyPopperEffect",
-Function = function (callback)
-	if callback then
-		while task.wait() do
-			if not effect.Enabled then return end
-			game:GetService("ReplicatedStorage")["events-@easy-games/game-core:shared/game-core-networking@getEvents.Events"].useAbility:FireServer("PARTY_POPPER")
+	Name = "PartyPopperEffect",
+	Function = function (callback)
+		if callback then
+			while task.wait() do
+				if not effect.Enabled then return end
+				game:GetService("ReplicatedStorage")["events-@easy-games/game-core:shared/game-core-networking@getEvents.Events"].useAbility:FireServer("PARTY_POPPER")
+			end
 		end
-	end
-end
-Default = false,
-HoverText = "Party Popper Effect."
+	end,
+	Default = false,
+	HoverText = "Party Popper Effect."
 })
 
 local text = (shared.DNutPrivateLoaded and "DNut Private" or "DNut")
