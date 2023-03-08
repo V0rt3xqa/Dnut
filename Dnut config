@@ -1103,8 +1103,38 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 		end
 	end
 end)
+
+local effect = {}
+effect = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+Name = "DragonBreathEffect",
+Function = function (callback)
+	if callback then
+		while task.wait() do
+			if not effect.Enabled then return end
+			game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.DragonBreath:FireServer({["player"] = game:GetService("Players").LocalPlayer})
+		end
+	end
+end
+Default = false,
+HoverText = "Dragon Breath Effect."
+})
+local effect = {}
+effect = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+Name = "PartyPopperEffect",
+Function = function (callback)
+	if callback then
+		while task.wait() do
+			if not effect.Enabled then return end
+			game:GetService("ReplicatedStorage")["events-@easy-games/game-core:shared/game-core-networking@getEvents.Events"].useAbility:FireServer("PARTY_POPPER")
+		end
+	end
+end
+Default = false,
+HoverText = "Party Popper Effect."
+})
+
 local text = (shared.DNutPrivateLoaded and "DNut Private" or "DNut")
-local version = "1.16b (added server killer)"
+local version = "1.16c (added effects)"
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = text.." | v"..version
