@@ -228,11 +228,11 @@ DNutantivoid = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateO
 				antivoidpart.Material = Enum.Material.Neon
 				antivoidpart.Touched:connect(function(dumbcocks)
 					if dumbcocks.Parent:WaitForChild("Humanoid") and dumbcocks.Parent.Name == lplr.Name then
-						game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+						dumbcocks.Parent:WaitForChild("Humanoid"):ChangeState("Jumping")
 						wait(0.2)
-						game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+						dumbcocks.Parent:WaitForChild("Humanoid"):ChangeState("Jumping")
 						wait(0.2)
-						game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+						dumbcocks.Parent:WaitForChild("Humanoid"):ChangeState("Jumping")
 					end
 				end)
 			end)
