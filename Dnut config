@@ -275,13 +275,6 @@ do
 		Name = "server killer",
 		Function = function(callback)
 			if callback then
-				game.DescendantAdded:Connect(function (v)
-					task.wait()
-					if v.Name == "InfernalShields" then
-						v:Destroy()
-					end
-				end)
-
 				while task.wait() do
 					game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.UseInfernalShield:FireServer(unpack(args))
 				end
