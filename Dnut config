@@ -291,53 +291,10 @@ do
 	})
 end
 
-
+local oldselfdestruct = GuiLibrary.SelfDestruct
 GuiLibrary.SelfDestruct = function()
-	task.spawn(function()
-		coroutine.close(saveSettingsLoop)
-	end)
-
-	if vapeInjected then 
-		GuiLibrary.SaveSettings()
-	end
-	vapeInjected = false
-	game:GetService("UserInputService").OverrideMouseIconBehavior = Enum.OverrideMouseIconBehavior.None
-
-	for i,v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do
-		if (v.Type == "Button" or v.Type == "OptionsButton") and v.Api.Enabled then
-			v.Api.ToggleButton(false)
-		end
-	end
-
-	for i,v in pairs(TextGUIConnections) do 
-		v:Disconnect()
-	end
-	for i,v in pairs(TextGUIObjects) do 
-		for i2,v2 in pairs(v) do 
-			v2.Visible = false
-			v2:Destroy()
-			v[i2] = nil
-		end
-	end
-
-	GuiLibrary.SelfDestructEvent:Fire()
-	shared.VapeExecuted = nil
-	shared.VapePrivate = nil
-	shared.VapeFullyLoaded = nil
-	shared.VapeSwitchServers = nil
-	shared.GuiLibrary = nil
-	shared.VapeIndependent = nil
-	shared.VapeManualLoad = nil
-	shared.CustomSaveVape = nil
-	shared.DNutLoaded = false
-	GuiLibrary.KeyInputHandler:Disconnect()
-	GuiLibrary.KeyInputHandler2:Disconnect()
-	if MiddleClickInput then
-		MiddleClickInput:Disconnect()
-	end
-	teleportConnection:Disconnect()
-	GuiLibrary.MainGui:Destroy()
-	game:GetService("RunService"):SetRobloxGuiFocused(false)	
+	shared.DNutLoaded = false;
+	oldselfdestruct()
 end
 
 task.spawn(function()
