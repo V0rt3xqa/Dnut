@@ -1137,7 +1137,7 @@ effect = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton(
 })
 
 local text = (shared.DNutPrivateLoaded and "DNut Private" or "DNut")
-local version = "1.16c (added effects)"
+local version = "1.16d"
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = text.." | v"..version
