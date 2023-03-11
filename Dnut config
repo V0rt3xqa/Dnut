@@ -333,7 +333,7 @@ local Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].Cre
 	{Name = "Lobby Disabler(client)"
 		, Function = function (callback)
 			if callback then
-				if GuiLibrary.ObjectsThatCanBeSaved["Lobby CheckToggle"]["Api"].Enabled and matchState == 0 then
+				if matchState == 0 then
 					local a = lplr.Character
 					local b = a.HumanoidRootPart
 					a.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
