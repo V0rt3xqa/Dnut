@@ -346,7 +346,7 @@ local Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].Cre
 					a.Humanoid:ChangeState(Enum.HumanoidStateType.Running)
 					while b do 
 						task.wait()
-						a.PrimaryPart = b;
+						lplr.Character.PrimaryPart = lplr.Character.HumanoidRootPart;
 					end
 				else
 					game.Players.LocalPlayer.Character.Humanoid.Health = 0;
