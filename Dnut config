@@ -1,6 +1,5 @@
 -- Dnut config
 repeat task.wait() until game:IsLoaded()
-repeat task.wait() until shared.GuiLibrary and shared.VapeFullyLoaded
 print('loading...')
 pcall(function()
 	task.wait(0.001 * randomamount * 0.1)
@@ -322,6 +321,36 @@ task.spawn(function()
 		HoverText = "Buy hang glider"
 	})
 end)
+
+local effect = {}
+effect = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	Name = "DragonBreathEffect",
+	Function = function (callback)
+		if callback then
+			while task.wait() do
+				if not effect.Enabled then return end
+				game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.DragonBreath:FireServer({["player"] = game:GetService("Players").LocalPlayer})
+			end
+		end
+	end,
+	Default = false,
+	HoverText = "Dragon Breath Effect."
+})
+local effect = {}
+effect2 = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	Name = "PartyPopperEffect",
+	Function = function (callback)
+		if callback then
+			while task.wait() do
+				if not effect.Enabled then return end
+				game:GetService("ReplicatedStorage")["events-@easy-games/game-core:shared/game-core-networking@getEvents.Events"].useAbility:FireServer("PARTY_POPPER")
+			end
+		end
+	end,
+	Default = false,
+	HoverText = "Party Popper Effect."
+})
+
 DNutfakedupe = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 	Name = "Dupe script",
 	Function = function(callback) 
@@ -1109,35 +1138,6 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 		end
 	end
 end)
-
-local effect = {}
-effect = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
-	Name = "DragonBreathEffect",
-	Function = function (callback)
-		if callback then
-			while task.wait() do
-				if not effect.Enabled then return end
-				game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.DragonBreath:FireServer({["player"] = game:GetService("Players").LocalPlayer})
-			end
-		end
-	end,
-	Default = false,
-	HoverText = "Dragon Breath Effect."
-})
-local effect = {}
-effect = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
-	Name = "PartyPopperEffect",
-	Function = function (callback)
-		if callback then
-			while task.wait() do
-				if not effect.Enabled then return end
-				game:GetService("ReplicatedStorage")["events-@easy-games/game-core:shared/game-core-networking@getEvents.Events"].useAbility:FireServer("PARTY_POPPER")
-			end
-		end
-	end,
-	Default = false,
-	HoverText = "Party Popper Effect."
-})
 
 local text = (shared.DNutPrivateLoaded and "DNut Private" or "DNut")
 local version = "1.16d"
