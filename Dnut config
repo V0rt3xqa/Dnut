@@ -264,6 +264,20 @@ DNutinfinitejump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].C
 	HoverText = "OP with gravity and custom speed"
 })
 
+
+fps = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+	Name = "Fps/Ping counter",
+	Function = function(callback) 
+		if callback then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/fps-ping-counter.lua"))()
+		end
+	end,
+	Default = false,
+	HoverText = "I had strep and couldn't sleep so I made this"
+})
+
+
+
 local lplr = game.Players.LocalPlayer
 do
 	local args = {
