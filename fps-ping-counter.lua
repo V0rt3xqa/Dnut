@@ -4,7 +4,7 @@ local Dnutfpspingthing = {};
 -- StarterGui.ScreenGui
 Dnutfpspingthing["1"] = Instance.new("ScreenGui")
 Dnutfpspingthing["1"].Parent = game:GetService("CoreGui")
-
+Dnutfpspingthing["1"].Name = [[Dnutfpsping]]
 
 -- StarterGui.ScreenGui.Logo
 Dnutfpspingthing["2"] = Instance.new("TextLabel", Dnutfpspingthing["1"]);
@@ -70,14 +70,13 @@ Dnutfpspingthing["6"]["FontFace"] = Font.new([[rbxassetid://12187371840]], Enum.
 Dnutfpspingthing["6"]["TextSize"] = 50;
 Dnutfpspingthing["6"]["TextColor3"] = Color3.fromRGB(247, 137, 33);
 Dnutfpspingthing["6"]["Size"] = UDim2.new(0, 200, 0, 50);
-
 Dnutfpspingthing["6"]["Name"] = [[ping-number]];
 Dnutfpspingthing["6"]["BackgroundTransparency"] = 1;
 Dnutfpspingthing["6"]["Position"] = UDim2.new(0.6200000047683716, 0, 0, 0);
 local x = math.random()
 repeat
 	task.wait()
-	local ping = tonumber(game:GetService("Stats"):FindFirstChild("PerformanceStats").CPU:GetValue())
+	local ping = tonumber(game:GetService("Stats"):FindFirstChild("PerformanceStats").Ping:GetValue())
 	ping = math.floor(ping)
 	Dnutfpspingthing["6"]["Text"] = ping
 until x == true
