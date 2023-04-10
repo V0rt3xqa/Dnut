@@ -1,17 +1,7 @@
 -- Dnut config
-local randomamount = 1
 local loaded
-task.spawn(function()
-	for i = 0,10000 do
-		task.wait(0.1)
-		randomamount = i
-		if loaded == true then
-			break
-		end
-	end
-end)
 repeat task.wait() until game:IsLoaded()
-repeat task.wait() until shared.GuiLibrary and shared.VapeFullyLoaded
+repeat task.wait() until shared.GuiLibrary
 print('loading...')
 pcall(function()
 	task.wait(0.001 * randomamount * 0.1)
@@ -26,24 +16,12 @@ local function createwarning(title, text, delay)
 	return (suc and res)
 end
 local UIS = game:GetService("UserInputService")
-local COB = function(tab, argstable) 
-	return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
-end
 local repstorage = game.ReplicatedStorage
 local CreateFunction = function(items)
 	task.spawn(items)
 end
 
 loaded = true
-local images = {
-	"AddItem","AddRemoveIcon1","ArrowIndicator","BackIcon","BindBackground","BlatantIcon","CircleListBlacklist","ColorSlider1","ColorSlider2","CombatIcon","DiscordIcon",
-	"DownArrow","ExitIcon1","FriendsIcon","HoverArrow","HoverArrow3","HoverArrow4","InfoNotification","KeybindIcon","MoreButton1","MoreButton2","MoreButton3",
-	"NotificationBackground","NotificationBar","OnlineProfilesButton","PencilIcon","PinButton","ProfilesIcon","RadarIcon1","RadarIcon2","RainbowIcon1","RainbowIcon2",
-	"RenderIcon","RightArrow","SearchBarIcon","SettingsWheel1","SettingsWheel2","SliderArrow1","SliderArrowSeperator","SliderButton1","TargetIcon","TargetIcon1",
-	"TargetIcon2","TargetIcon3","TargetIcon4","TargetInfoIcon1","TargetInfoIcon2","TextBoxBKG","TextBoxBKG2","TextGUIIcon1","TextGUIIcon2","TextGUIIcon3",
-	"TextGUIIcon4","ToggleArrow","UpArrow","UtilityIcon","VapeCape","VapeIcon","VapeLogo1","VapeLogo2","VapeLogo3","VapeLogo4","WarningNotification",
-	"WindowBlur","WorldIcon"
-}
 
 local cachedassetsDnut = {}
 local getassetDnut = getsynasset or getcustomasset or function(location) return "rbxasset://"..location end
@@ -174,9 +152,7 @@ pcall(function()
 	fileversion = readfile("DNut/currentversion.lua")
 end)
 checkifupdated(fileversion)
-for i,v in pairs(images) do
-	checkiffile("vape/assets/"..v..".png")
-end
+
 
 if shared.DNutLoaded then
 	error("Dnut already loaded")
