@@ -1,5 +1,17 @@
 -- Dnut config
+local randomamount = 1
+local loaded
+task.spawn(function()
+	for i = 0,10000 do
+		task.wait(0.1)
+		randomamount = i
+		if loaded == true then
+			break
+		end
+	end
+end)
 repeat task.wait() until game:IsLoaded()
+repeat task.wait() until shared.GuiLibrary and shared.VapeFullyLoaded
 print('loading...')
 pcall(function()
 	task.wait(0.001 * randomamount * 0.1)
