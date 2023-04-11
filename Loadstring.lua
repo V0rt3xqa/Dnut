@@ -2,13 +2,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4Fo
 if shared.autosave == true then
 writefile("vape/CustomModules/6872274481.lua", [[shared.test = true
     loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Dnut%20lazy%20autosave.lua"))()]])
-loadstring(readfile("vape/CustomModules/6872274481.lua"))()
-wait(1)
-if shared.test == true then
-    print("dnut has loaded")
-    else 
-    warn("dnut failed to save or you are using another script")
-end
 else
 a = pcall(function() 
       if shared.DNutLoaded then
