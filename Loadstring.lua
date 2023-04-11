@@ -1,7 +1,8 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
 if shared.autosave == true then
-writefile("vape/CustomModules/6872274481.lua", [[shared.test = true
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Dnut%20lazy%20autosave.lua"))()]])
+writefile("vape/CustomModules/6872274481.lua", [[
+loadstring(game:HttpGet("https://pastebin.com/raw/Rh4PbjWy"))();
+loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Dnut%20config"))()]])
 else
 a = pcall(function() 
       if shared.DNutLoaded then
