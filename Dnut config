@@ -265,8 +265,14 @@ do
 		Name = "server killer",
 		Function = function(callback)
 			if callback then
+				
 				while task.wait() do
+				local did = 0
+				while task.wait() do
+				did += 1
 					game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.UseInfernalShield:FireServer(unpack(args))
+				end
+				if did == 500 then game.Players.LocalPlayer.Character.Humanoid.Health = 0 did = 0 end
 				end
 			end
 		end,
