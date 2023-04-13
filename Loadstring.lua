@@ -1,4 +1,6 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/c1ca22ea6ffb23aa6346d034eadd18cfef8f7f69/NewMainScript.lua"))()
+if not shared.GuiLibrary then
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/c1ca22ea6ffb23aa6346d034eadd18cfef8f7f69/NewMainScript.lua"))()
+end
 if shared.autosave == true then
 writefile("vape/CustomModules/6872274481.lua", [[
 loadstring(game:HttpGet("https://pastebin.com/raw/Rh4PbjWy"))();
