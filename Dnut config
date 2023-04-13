@@ -147,11 +147,11 @@ if not isfolder("DNut") then
 	makefolder("DNut")
 end
 
-local fileversion
-pcall(function()
-	fileversion = readfile("DNut/currentversion.lua")
-end)
-checkifupdated(fileversion)
+--local fileversion
+--pcall(function()
+--	fileversion = readfile("DNut/currentversion.lua")
+--end)
+--checkifupdated(fileversion)
 
 
 if shared.DNutLoaded then
@@ -245,7 +245,7 @@ fps = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsB
 	Name = "Fps/Ping counter",
 	Function = function(callback) 
 		if callback then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/fps-ping-counter.lua"))()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/fps-ping-counter.lua"))()
 		end
 	end,
 	Default = false,
@@ -265,14 +265,14 @@ do
 		Name = "server killer",
 		Function = function(callback)
 			if callback then
-				
+
 				while task.wait() do
-				local did = 0
-				while task.wait() do
-				did += 1
-					game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.UseInfernalShield:FireServer(unpack(args))
-				end
-				if did == 500 then game.Players.LocalPlayer.Character.Humanoid.Health = 0 did = 0 end
+					local did = 0
+					while task.wait() do
+						did += 1
+						game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.UseInfernalShield:FireServer(unpack(args))
+					end
+					if did == 500 then game.Players.LocalPlayer.Character.Humanoid.Health = 0 did = 0 end
 				end
 			end
 		end,
@@ -1134,7 +1134,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 end)
 
 local text = (shared.DNutPrivateLoaded and "DNut Private" or "DNut")
-local version = "1.16d"
+local version = "1.17 (fixed dnut not loading and updated server killer)"
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = text.." | v"..version
