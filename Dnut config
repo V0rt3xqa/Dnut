@@ -1190,7 +1190,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 end)
 
 local text = (shared.DNutPrivateLoaded and "DNut Private" or "DNut")
-local version = "1.17 (added VelocityFly (kinda trash) and HighVeloJump(high velocity jump) )"
+local version = "1.17 (added VelocityFly and HighVeloJump(high velocity jump) )"
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = text.." | v"..version
