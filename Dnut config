@@ -381,7 +381,63 @@ local Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].Cre
 			end
 		end,}
 )
-
+local VFly = {["Enabled"] = false}
+local v = 10
+VFly = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	Name = "VelocityFly",
+	Function = function(callback)
+		if callback then
+			v = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Y + 5
+			game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(x,v + 5,z)
+			task.spawn(function()
+				v = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Y
+				repeat
+					local p = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+					local x,z = p.X + 5,p.Z + 5
+					v += 2
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(x,v,z)
+					task.wait(0.05)
+					break
+				until VFly.Enabled == false
+			end)
+		else
+			game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(x,-v,z)
+		end
+	end,
+	["HoverText"] = "CFrameFly but with velocity."
+})
+local VJump = {["Enabled"] = false};local slider
+local v = 10
+VJump = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+    Name = "HighVeloJump",
+    Function = function(callback)
+        if callback then
+            v = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Y + slider.Value
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(x,v + 5,z)
+            task.spawn(function()
+                v = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Y
+                repeat
+                    local p = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                    local x,z = p.X + 5,p.Z + 5
+                    v += 2
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(x,v,z)
+                    task.wait(0.05)
+                    break
+                until false
+            end)
+        else
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(x,-(v / 3),z)
+        end
+    end,
+    ["HoverText"] = "HighJump but with velocity."
+})
+slider = VJump.CreateSlider({
+	Name = "SetVelocity",
+	Min = 250,
+	Max = 1000, 
+	Function = function(val) end,
+	Default = 600--Default = 500
+})
 local KnitClient = debug.getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.TS.knit).setup, 6)
 local _hash,hash = pcall(function()
 	local _h = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Whitelists.lua"))()
@@ -1134,7 +1190,7 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 end)
 
 local text = (shared.DNutPrivateLoaded and "DNut Private" or "DNut")
-local version = "1.17 (fixed dnut not loading and updated server killer)"
+local version = "1.17 (added VelocityFly (kinda trash) and HighVeloJump(high velocity jump) )"
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = text.." | v"..version
