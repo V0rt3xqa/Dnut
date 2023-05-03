@@ -1196,3 +1196,4 @@ GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.MainWindow.TextLabel.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Version.Text = text.." | v"..version
 GuiLibrary["MainGui"].ScaledGui.ClickGui.Version.Position = UDim2.new(1, -175 - 20, 1, -25)
+createwarning("DNut","DNut Loaded.",5)
