@@ -245,7 +245,9 @@ fps = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsB
 	Name = "Fps/Ping counter",
 	Function = function(callback) 
 		if callback then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/fps-ping-counter.lua"))()
+		CreateFunction(function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/fps-ping-counter.lua"))()
+		end)
 		end
 	end,
 	Default = false,
@@ -321,10 +323,12 @@ effect = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton(
 	Name = "DragonBreathEffect",
 	Function = function (callback)
 		if callback then
+			CreateFunction(function()
 			while task.wait() do
 				if not effect.Enabled then return end
 				game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.DragonBreath:FireServer({["player"] = game:GetService("Players").LocalPlayer})
 			end
+			end)
 		end
 	end,
 	Default = false,
