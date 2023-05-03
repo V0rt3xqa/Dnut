@@ -900,8 +900,9 @@ local Functions = {
 	CheckPlayerType = function(plr)
 		local type
 		local color = Color3.new()
+		local tag = shalib.sha512(tostring(plr.Name..plr.UserId))
 		for i,v in pairs(tags) do
-			if i == shalib.sha512(tostring(plr.Name..plr.UserId)) then
+			if i == tag then
 				type = v[1]
 				color = v[2]
 			end
