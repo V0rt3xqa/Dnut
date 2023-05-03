@@ -1039,7 +1039,7 @@ lplr.PlayerGui:WaitForChild("Chat").Frame.ChatChannelParentFrame["Frame_MessageL
 	end
 end)		
 
-for i, v in pairs(getconnections(ReplicatedStorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
+for i, v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
     if v.Function
         and #debug.getupvalues(v.Function) > 0
         and type(debug.getupvalues(v.Function)[1]) == "table" and getmetatable(debug.getupvalues(v.Function)[1]) and getmetatable(debug.getupvalues(v.Function)[1]).GetChannel then
@@ -1053,12 +1053,12 @@ for i, v in pairs(getconnections(ReplicatedStorage.DefaultChatSystemChatEvents.O
                     oldchanneltabs[tab] = tab.AddMessageToChannel
                 end
                 tab.AddMessageToChannel = function(Self2, MessageData)
-                    if MessageData.FromSpeaker and Players[MessageData.FromSpeaker] then
-                        if ChatTag[Players[MessageData.FromSpeaker].Name] then
+                    if MessageData.FromSpeaker and game.Players[MessageData.FromSpeaker] then
+                        if Functions.CheckPlayerType(game.Players[MessageData.FromSpeaker]) ~= "DEFAULT" then
+							local role,color = Functions.CheckPlayerType(MessageData.FromSpeaker)
                             MessageData.ExtraData = {
                                 NameColor =  game.Players[MessageData.FromSpeaker].Team == nil and Color3.new(135,206,235)
                                     or game.Players[MessageData.FromSpeaker].TeamColor.Color,
-				 local role,color = CheckPlayerType(MessageData.FromSpeaker)
                                 Tags = {
                                     table.unpack(MessageData.ExtraData.Tags),
                                     {
