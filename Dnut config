@@ -334,31 +334,6 @@ effect = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton(
 	Default = false,
 	HoverText = "Dragon Breath Effect."
 })
-local effect = {}
-effect2 = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
-	Name = "PartyPopperEffect",
-	Function = function (callback)
-		if callback then
-			while task.wait() do
-				if not effect.Enabled then return end
-				game:GetService("ReplicatedStorage")["events-@easy-games/game-core:shared/game-core-networking@getEvents.Events"].useAbility:FireServer("PARTY_POPPER")
-			end
-		end
-	end,
-	Default = false,
-	HoverText = "Party Popper Effect."
-})
-
-DNutfakedupe = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
-	Name = "Dupe script",
-	Function = function(callback) 
-		if callback then
-			game.Players.LocalPlayer:kick("Vxpe detected")
-		end
-	end,
-	Default = false,
-	HoverText = "dupe"
-})
 local Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton(
 	{Name = "Lobby Disabler(client)"
 		, Function = function (callback)
