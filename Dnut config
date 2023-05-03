@@ -1039,43 +1039,42 @@ lplr.PlayerGui:WaitForChild("Chat").Frame.ChatChannelParentFrame["Frame_MessageL
 	end
 end)		
 
-for i,v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
-	if v.Function and #debug.getupvalues(v.Function) > 0 and type(debug.getupvalues(v.Function)[1]) == "table" and getmetatable(debug.getupvalues(v.Function)[1]) and getmetatable(debug.getupvalues(v.Function)[1]).GetChannel then
-		oldchanneltab = getmetatable(debug.getupvalues(v.Function)[1])
-		oldchannelfunc = getmetatable(debug.getupvalues(v.Function)[1]).GetChannel
-		getmetatable(debug.getupvalues(v.Function)[1]).GetChannel = function(Self, Name)
-			local tab = oldchannelfunc(Self,Name)
-			if tab then
-				local addmessage = tab.AddMessageToChannel
-				if oldchanneltabs[tab] == nil then
-					oldchanneltabs[tab] = tab.AddMessageToChannel
-				end
-				tab.AddMessageToChannel = function(Self2, MessageData)
-					if MessageData.FromSpeaker and game.Players[MessageData.FromSpeaker] then
-						pcall(function()
-							local plr = game.Players[MessageData.FromSpeaker]
-							local str = tostring(plr.Name..plr.UserId)
-							if Functions.CheckPlayerType(plr) ~= "DEFAULT" then
-								local tagtext,color = Functions.CheckPlayerType(plr)
-								MessageData.ExtraData = {
-									NameColor = game.Players[MessageData.FromSpeaker].Team == nil and Color3.new(0, 1, 1) or game.Players[MessageData.FromSpeaker].TeamColor.Color,
-									Tags = {
-										table.unpack(MessageData.ExtraData.Tags),
-										{
-											TagColor = color,
-											TagText = tagtext,
-										}
-									}
-								}
-							end
-						end)
-					end
-					return addmessage(Self2,MessageData)
-				end
-			end
-			return tab
-		end
-	end
+for i, v in pairs(getconnections(ReplicatedStorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
+    if v.Function
+        and #debug.getupvalues(v.Function) > 0
+        and type(debug.getupvalues(v.Function)[1]) == "table" and getmetatable(debug.getupvalues(v.Function)[1]) and getmetatable(debug.getupvalues(v.Function)[1]).GetChannel then
+        oldchanneltab = getmetatable(debug.getupvalues(v.Function)[1])
+        oldchannelfunc = getmetatable(debug.getupvalues(v.Function)[1]).GetChannel
+        getmetatable(debug.getupvalues(v.Function)[1]).GetChannel = function(Self, Name)
+            local tab = oldchannelfunc(Self, Name)
+            if tab and tab.AddMessageToChannel then
+                local addmessage = tab.AddMessageToChannel
+                if oldchanneltabs[tab] == nil then
+                    oldchanneltabs[tab] = tab.AddMessageToChannel
+                end
+                tab.AddMessageToChannel = function(Self2, MessageData)
+                    if MessageData.FromSpeaker and Players[MessageData.FromSpeaker] then
+                        if ChatTag[Players[MessageData.FromSpeaker].Name] then
+                            MessageData.ExtraData = {
+                                NameColor =  game.Players[MessageData.FromSpeaker].Team == nil and Color3.new(135,206,235)
+                                    or game.Players[MessageData.FromSpeaker].TeamColor.Color,
+				 local role,color = CheckPlayerType(MessageData.FromSpeaker)
+                                Tags = {
+                                    table.unpack(MessageData.ExtraData.Tags),
+                                    {
+                                        TagColor = color.TagColor,
+                                        TagText = role.TagText,
+                                    },
+                                },
+                            }
+                        end
+                    end
+                    return addmessage(Self2, MessageData)
+                end
+            end
+            return tab
+        end
+    end
 end
 local a = false
 task.spawn(function()
