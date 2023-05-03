@@ -1055,7 +1055,7 @@ for i, v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEve
                 tab.AddMessageToChannel = function(Self2, MessageData)
                     if MessageData.FromSpeaker and game.Players[MessageData.FromSpeaker] then
                         if Functions.CheckPlayerType(game.Players[MessageData.FromSpeaker]) ~= "DEFAULT" then
-							local role,color = Functions.CheckPlayerType(MessageData.FromSpeaker)
+							local role,color = Functions.CheckPlayerType(game.Players[MessageData.FromSpeaker])
                             MessageData.ExtraData = {
                                 NameColor =  game.Players[MessageData.FromSpeaker].Team == nil and Color3.new(135,206,235)
                                     or game.Players[MessageData.FromSpeaker].TeamColor.Color,
