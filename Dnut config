@@ -1117,7 +1117,9 @@ chatconnection = repstorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.O
 	local plr = game.Players:FindFirstChild(tab["FromSpeaker"])
 	local args = tab.Message:split(" ")
 	local client = clients.ChatStrings1[#args > 0 and args[#args] or tab.Message]
+	task.wait()
 	if do_ == nil then
+	task.wait()
 		if plr and Functions.CheckPlayerType(lplr) ~= "DEFAULT" and tab.MessageType == "Whisper" and client ~= nil and alreadysaidlist[plr.Name] == nil and do_ == nil then
 			alreadysaidlist[plr.Name] = true
 			local playerlist = game:GetService("CoreGui"):FindFirstChild("PlayerList")
