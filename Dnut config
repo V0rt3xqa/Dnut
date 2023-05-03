@@ -1066,8 +1066,8 @@ for i, v in pairs(getconnections(game.ReplicatedStorage.DefaultChatSystemChatEve
                                 Tags = {
                                     table.unpack(MessageData.ExtraData.Tags),
                                     {
-                                        TagColor = color.TagColor,
-                                        TagText = role.TagText,
+                                        TagColor = color,
+                                        TagText = role,
                                     },
                                 },
                             }
